@@ -26,3 +26,8 @@ dependencyResolutionManagement {
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "Vurgun"
 include(":app")
+include(":core:common-ui")
+include(":core:common")
+include(":core:data")
+include(":core:network")
+include(":core:domain")
