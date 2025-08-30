@@ -214,11 +214,11 @@ dev-iurysouza-modulegraph = { id = "dev.iurysouza.modulegraph", version.ref = "m
 room = { id = "androidx.room", version.ref = "room" }
 
 # Plugins defined by this project
-unsplash-android-application = { id = "com.android.vurgun.application" }
-unsplash-android-application-compose = { id = "com.android.vurgun.application.compose" }
-unsplash-android-application-library = { id = "com.android.vurgun.library" }
-unsplash-android-application-detekt = { id = "com.android.vurgun.detekt" }
-unsplash-android-application-lint = { id = "com.android.vurgun.ktlint" }
-unsplash-android-application-hilt = { id = "com.android.vurgun.hilt" }
-unsplash-android-application-room = { id = "com.android.vurgun.room" }
+vurgun-android-application = { id = "com.android.vurgun.application" }
+vurgun-android-application-compose = { id = "com.android.vurgun.application.compose" }
+vurgun-android-application-library = { id = "com.android.vurgun.library" }
+vurgun-android-application-detekt = { id = "com.android.vurgun.detekt" }
+vurgun-android-application-lint = { id = "com.android.vurgun.ktlint" }
+vurgun-android-application-hilt = { id = "com.android.vurgun.hilt" }
+vurgun-android-application-room = { id = "com.android.vurgun.room" }
 
