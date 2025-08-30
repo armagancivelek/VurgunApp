@@ -1,5 +1,6 @@
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.vurgun.convention.extensions.configureKotlinAndroid
+import com.android.vurgun.convention.extensions.registerPrePushTask
 import com.android.vurgun.convention.utils.androidTestImplementation
 import com.android.vurgun.convention.utils.implementation
 import com.android.vurgun.convention.utils.libs
@@ -36,6 +37,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 androidTestImplementation(libs.findLibrary("junit").get())
                 // Modules
             }
+            registerPrePushTask()
         }
     }
 }
