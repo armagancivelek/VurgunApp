@@ -8,6 +8,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
@@ -20,6 +22,7 @@ import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
@@ -30,6 +33,7 @@ import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -40,20 +44,18 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.android.vurgun.R
-import com.android.vurgun.common_ui.component.AppTopBar
-import com.android.vurgun.common_ui.icon.AppIcons
 import com.android.vurgun.common_ui.theme.BlueColor
 import com.android.vurgun.common_ui.theme.WhiteColor
 import com.android.vurgun.navigation.AppNavHost
 import com.android.vurgun.navigation.TopLevelDestination
 import com.android.vurgun.ui.state.AppState
-import com.android.vurgun.common_ui.R as R_common
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class, ExperimentalFoundationApi::class, ExperimentalComposeUiApi::class, ExperimentalAnimationApi::class)
 @Composable
@@ -80,33 +82,49 @@ fun VurgunApp(
 
     Scaffold(
         topBar = {
-            // Show the top app bar on top level destinations.
-            val destination = appState.currentTopLevelDestination
-            if (destination != null) {
-                AppTopBar(
-                    titleRes = destination.titleTextId,
-                    searchQuery = "searchQuery.value",
-                    onSearchQueryChange = { searchText ->
-//                        searchQuery.value = searchText
-//                        sharedViewModel.updateQuery(searchText)
-                    },
-                    navigationIconContentDescription = stringResource(
-                        id = R_common.string.feature_home_title,
-                    ),
-                    actionIcon = AppIcons.Notification,
-                    actionIconContentDescription = stringResource(
-                        id = R_common.string.feature_home_title,
-                    ),
-                    colors = TopAppBarDefaults.centerAlignedTopAppBarColors(
-                        containerColor = MaterialTheme.colorScheme.onPrimary,
-                    ),
-                    onActionClick = { },
-                    onNavigationClick = {
-//                        searchQuery.value = ""
-//                        sharedViewModel.updateQuery("")
-                    },
+            TopAppBar(
+                title = {
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Start
+                    ) {
+                        Text(
+                            text = stringResource(id = R.string.app_name).uppercase(),
+                            style = MaterialTheme.typography.headlineSmall,
+                            fontWeight = FontWeight.ExtraBold,
+                            color = Color.White
+                        )
+                        Image(
+                            painter = painterResource(id = R.drawable.ic_splash),
+                            contentDescription = "Logo",
+                            modifier = Modifier
+                                .size(64.dp)
+                                .offset(x = -14.dp,y =- 4.dp)
+                        )
+                    }
+                },
+                actions = {
+                    Box(
+                        modifier = Modifier
+                            .padding(end = 8.dp)
+                            .background(
+                                Color(0xFF4CAF50),
+                                RoundedCornerShape(16.dp)
+                            )
+                            .padding(horizontal = 10.dp, vertical = 5.dp)
+                    ) {
+                        Text(
+                            text = "Bakiye : 500,75 TL",
+                            color = Color.White,
+                            fontSize = 11.sp,
+                            fontWeight = FontWeight.Medium
+                        )
+                    }
+                },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = BlueColor
                 )
-            }
+            )
         },
         floatingActionButtonPosition = FabPosition.Center,
         floatingActionButton = {
@@ -150,8 +168,7 @@ fun VurgunApp(
                                 shape = CircleShape
                             )
                             .background(Color.White, CircleShape)
-                            .
-                            clickable {
+                            .clickable {
                                 appState.navigateToTopLevelDestination(TopLevelDestination.CURRENT_SLIP)
                             },
                         contentAlignment = Alignment.Center
