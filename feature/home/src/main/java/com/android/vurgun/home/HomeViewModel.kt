@@ -4,7 +4,6 @@ import androidx.lifecycle.viewModelScope
 import com.android.vurgun.common.core.CoreViewModel
 import com.android.vurgun.common_ui.R
 import com.android.vurgun.common_ui.component.SnackBarType
-import com.android.vurgun.domain.mapper.toGroupedUiModel
 import com.android.vurgun.domain.usecase.GetScoresUseCase
 import com.android.vurgun.domain.usecase.GetSportsUseCase
 import com.android.vurgun.network.common.NetworkConnectivityManager
@@ -26,6 +25,7 @@ class HomeViewModel @Inject constructor(
 
     init {
         observeNetworkConnectivity()
+        getSports()
     }
 
     private fun observeNetworkConnectivity() {
@@ -79,8 +79,7 @@ class HomeViewModel @Inject constructor(
                 onStart = {
                     updateState { it.copy(isLoading = true) }
                 },
-                onSuccess = { sports ->
-                    val groupedSports = sports.toGroupedUiModel()
+                onSuccess = { groupedSports ->
                     updateState {
                         it.copy(
                             isLoading = false,
@@ -104,8 +103,8 @@ class HomeViewModel @Inject constructor(
             currentSportGroups.mapNotNull { group ->
                 val filteredSports = group.sports.filter { sport ->
                     sport.title.contains(query, ignoreCase = true) ||
-                    sport.description.contains(query, ignoreCase = true) ||
-                    sport.group.contains(query, ignoreCase = true)
+                        sport.description.contains(query, ignoreCase = true) ||
+                        sport.group.contains(query, ignoreCase = true)
                 }
                 if (filteredSports.isNotEmpty()) {
                     group.copy(sports = filteredSports)

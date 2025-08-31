@@ -15,15 +15,13 @@ fun Sport.toUiModel(): SportUiModel {
     )
 }
 
-fun List<Sport>.toUiModel(): List<SportUiModel> {
+fun List<Sport>.toGroupedUiModel(): List<SportGroupUiModel> {
     return map { it.toUiModel() }
-}
-
-fun List<SportUiModel>.toGroupedUiModel(): List<SportGroupUiModel> {
-    return groupBy { it.group }.map { (group, sportsList) ->
-        SportGroupUiModel(
-            groupName = group,
-            sports = sportsList
-        )
-    }
+        .groupBy { it.group }
+        .map { (group, sportsList) ->
+            SportGroupUiModel(
+                groupName = group,
+                sports = sportsList
+            )
+        }
 }
