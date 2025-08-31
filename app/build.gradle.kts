@@ -10,4 +10,7 @@ android {
     hilt.enableAggregatingTask = true
 }
 
-dependencies {}
+dependencies {
+    implementation(project(":core:network"))
+    implementation(project(":core:common"))
+}
