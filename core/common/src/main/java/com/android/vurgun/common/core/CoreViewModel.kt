@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
-abstract class CoreViewModel<STATE : CoreState.ViewState, EVENT : CoreState.Event, INTENT : CoreState.Intent>(
+abstract class CoreViewModel<STATE : CoreState.ViewState, EVENT : CoreState.Event>(
     private val initialState: STATE,
 ) : ViewModel() {
 
@@ -28,8 +28,6 @@ abstract class CoreViewModel<STATE : CoreState.ViewState, EVENT : CoreState.Even
     fun sendEvent(event: EVENT) {
         viewModelScope.launch { _event.emit(event) }
     }
-
-    abstract fun onIntent(intent: INTENT)
 
     open fun retry() {}
 }
