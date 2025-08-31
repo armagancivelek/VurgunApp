@@ -89,10 +89,6 @@ internal fun Project.configureKotlinAndroid(
 
         flavorDimensions += "version"
         productFlavors {
-            create("beta") {
-                dimension = "version"
-                applicationIdSuffix = ".beta"
-            }
             create("prod") {
                 dimension = "version"
             }
@@ -143,9 +139,6 @@ internal fun Project.configureKotlinAndroid(
 
         flavorDimensions += "version"
         productFlavors {
-            create("beta") {
-                dimension = "version"
-            }
             create("prod") {
                 dimension = "version"
             }
