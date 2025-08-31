@@ -1,9 +1,10 @@
-package com.android.vurgun.home.ui
+package com.android.vurgun.home
 
 import androidx.lifecycle.viewModelScope
 import com.android.vurgun.common.core.CoreViewModel
+import com.android.vurgun.common_ui.R
 import com.android.vurgun.common_ui.component.SnackBarType
-import com.android.vurgun.domain.model.SportGroupUiModel
+import com.android.vurgun.domain.mapper.toGroupedUiModel
 import com.android.vurgun.domain.usecase.GetScoresUseCase
 import com.android.vurgun.domain.usecase.GetSportsUseCase
 import com.android.vurgun.network.common.NetworkConnectivityManager
@@ -25,8 +26,6 @@ class HomeViewModel @Inject constructor(
 
     init {
         observeNetworkConnectivity()
-        getSports()
-      //  getScores()
     }
 
     private fun observeNetworkConnectivity() {
@@ -62,21 +61,12 @@ class HomeViewModel @Inject constructor(
                     updateState {
                         it.copy(
                             isLoading = false,
-                            scores = scores
+                            scoresUiModel = scores
                         )
                     }
                 },
                 onFailure = { exception ->
-                    updateState {
-                        it.copy(isLoading = false)
-                    }
-                    sendEvent(
-                        HomeScreenContract.Event.ShowError(
-                            iconRes = com.android.vurgun.common_ui.R.drawable.ic_error,
-                            errorMessage = exception.message.orEmpty(),
-                            type = SnackBarType.Error
-                        )
-                    )
+                    handleApiError(exception)
                 }
             )
         }
@@ -90,47 +80,24 @@ class HomeViewModel @Inject constructor(
                     updateState { it.copy(isLoading = true) }
                 },
                 onSuccess = { sports ->
-                    val groupedSports = sports.groupBy { it.group }.map { (group, sportsList) ->
-                        SportGroupUiModel(
-                            groupName = group,
-                            sports = sportsList
-                        )
-                    }
+                    val groupedSports = sports.toGroupedUiModel()
                     updateState {
                         it.copy(
                             isLoading = false,
-                            sportGroups = groupedSports,
-                            filteredSportGroups = groupedSports
+                            sportGroupUiModel = groupedSports,
+                            filteredSportGroup = groupedSports
                         )
                     }
                 },
                 onFailure = { exception ->
-                    updateState {
-                        it.copy(isLoading = false)
-                    }
-                    sendEvent(
-                        HomeScreenContract.Event.ShowError(
-                            iconRes = com.android.vurgun.common_ui.R.drawable.ic_error,
-                            errorMessage = exception.message.orEmpty(),
-                            type = SnackBarType.Error
-                        )
-                    )
+                    handleApiError(exception)
                 }
             )
         }
     }
 
-    fun onEvent(event: HomeScreenContract.Event) {
-        when (event) {
-            is HomeScreenContract.Event.UpdateSearchQuery -> {
-                updateSearchQuery(event.query)
-            }
-            else -> {}
-        }
-    }
-
-    private fun updateSearchQuery(query: String) {
-        val currentSportGroups = uiState.value.sportGroups
+    fun updateSearchQuery(query: String) {
+        val currentSportGroups = uiState.value.sportGroupUiModel
         val filteredGroups = if (query.isEmpty()) {
             currentSportGroups
         } else {
@@ -149,13 +116,50 @@ class HomeViewModel @Inject constructor(
         updateState {
             it.copy(
                 searchQuery = query,
-                filteredSportGroups = filteredGroups
+                filteredSportGroup = filteredGroups
             )
         }
     }
 
+    fun toggleGroupExpansion(groupName: String) {
+        val updatedSportGroups = uiState.value.sportGroupUiModel.map { group ->
+            if (group.groupName == groupName) {
+                group.copy(isExpanded = !group.isExpanded)
+            } else {
+                group
+            }
+        }
+
+        val updatedFilteredGroups = uiState.value.filteredSportGroup.map { group ->
+            if (group.groupName == groupName) {
+                group.copy(isExpanded = !group.isExpanded)
+            } else {
+                group
+            }
+        }
+
+        updateState {
+            it.copy(
+                sportGroupUiModel = updatedSportGroups,
+                filteredSportGroup = updatedFilteredGroups
+            )
+        }
+    }
+
+
     override fun retry() {
         getSports()
+    }
+
+    private fun handleApiError(exception: Throwable) {
+        updateState { it.copy(isLoading = false) }
+        sendEvent(
+            HomeScreenContract.Event.ShowError(
+                iconRes = R.drawable.ic_error,
+                errorMessage = exception.message.orEmpty(),
+                type = SnackBarType.Error
+            )
+        )
     }
 
 

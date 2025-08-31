@@ -5,6 +5,9 @@ import android.content.pm.PackageManager
 import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -15,12 +18,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.android.vurgun.common_ui.component.LoadingView
 import com.android.vurgun.home.common.LocalHomeContentShimmer
 import com.android.vurgun.home.ui.component.HomeScreenContent
 import com.android.vurgun.common_ui.component.SnackBarType
 import com.android.vurgun.common_ui.theme.LocalAppSnackBarViewModel
 import com.android.vurgun.common_ui.theme.LocalContentShimmerTheme
 import com.android.vurgun.common_ui.theme.WhiteColor
+import com.android.vurgun.home.HomeScreenContract
+import com.android.vurgun.home.HomeViewModel
 import com.valentinilk.shimmer.ShimmerBounds
 import com.valentinilk.shimmer.rememberShimmer
 import kotlinx.coroutines.flow.collectLatest
@@ -67,6 +73,7 @@ fun HomeScreen(
 
                 is HomeScreenContract.Event.NavigateToPhotoDetail -> onItemClick.invoke(event.photoId)
                 is HomeScreenContract.Event.UpdateSearchQuery -> {}
+                is HomeScreenContract.Event.ToggleGroupExpansion -> {}
             }
         }
     }
@@ -80,10 +87,18 @@ fun HomeScreen(
          Surface(color = WhiteColor) {
              HomeScreenContent(
                  uiState = state,
-                 viewModel = viewModel,
+                 onSearchQueryChange = viewModel::updateSearchQuery,
+                 onToggleGroupExpansion = viewModel::toggleGroupExpansion,
+                 onSportClick = { sport ->
+                     // Handle sport selection
+                 }
              )
          }
-
     }
+    AnimatedVisibility(
+        visible = state.isLoading,
+        enter = fadeIn(),
+        exit = fadeOut()
+    ) { LoadingView() }
 }
 

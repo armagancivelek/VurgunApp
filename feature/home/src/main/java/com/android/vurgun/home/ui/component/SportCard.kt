@@ -23,6 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.tooling.preview.Preview
 import com.android.vurgun.domain.model.SportUiModel
 
 @Composable
@@ -82,4 +83,19 @@ fun SportCard(
             )
         }
     }
+}
+
+@Preview
+@Composable
+private fun SportCardPreview() {
+    SportCard(
+        sport = SportUiModel(
+            key = "basketball_nba",
+            group = "Basketball",
+            title = "NBA",
+            description = "National Basketball Association",
+            active = true,
+            hasOutrights = true
+        )
+    )
 }

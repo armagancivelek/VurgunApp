@@ -62,7 +62,7 @@ fun CustomHorizontalPagerComponent() {
                     this.alpha = alpha
                 }
                 .fillMaxWidth()
-                .aspectRatio(1.6f) // Görselin oranını sabitle
+                .aspectRatio(1.6f)
                 .clip(RoundedCornerShape(16.dp)),
             shape = RoundedCornerShape(16.dp)
         ) {

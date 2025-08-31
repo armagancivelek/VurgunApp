@@ -1,4 +1,4 @@
-package com.android.vurgun.home.ui
+package com.android.vurgun.home
 
 import androidx.annotation.DrawableRes
 import androidx.compose.runtime.Immutable
@@ -12,10 +12,10 @@ class HomeScreenContract {
     @Immutable
     data class UiState(
         override val isLoading: Boolean,
-        val sportGroups: List<SportGroupUiModel> = emptyList(),
-        val filteredSportGroups: List<SportGroupUiModel> = emptyList(),
+        val sportGroupUiModel: List<SportGroupUiModel> = emptyList(),
+        val filteredSportGroup: List<SportGroupUiModel> = emptyList(),
         val searchQuery: String = "",
-        val scores: List<ScoresUiModel> = emptyList(),
+        val scoresUiModel: List<ScoresUiModel> = emptyList(),
     ) : CoreState.ViewState
 
     sealed class Event : CoreState.Event {
@@ -31,6 +31,10 @@ class HomeScreenContract {
 
         data class UpdateSearchQuery(
             val query: String
+        ) : Event()
+
+        data class ToggleGroupExpansion(
+            val groupName: String
         ) : Event()
     }
 

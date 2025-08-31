@@ -11,5 +11,6 @@ data class SportUiModel(
 
 data class SportGroupUiModel(
     val groupName: String,
-    val sports: List<SportUiModel>
+    val sports: List<SportUiModel>,
+    val isExpanded: Boolean = true
 )
