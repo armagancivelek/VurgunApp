@@ -66,6 +66,7 @@ fun HomeScreen(
                 }
 
                 is HomeScreenContract.Event.NavigateToPhotoDetail -> onItemClick.invoke(event.photoId)
+                is HomeScreenContract.Event.UpdateSearchQuery -> {}
             }
         }
     }

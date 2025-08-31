@@ -8,3 +8,8 @@ data class SportUiModel(
     val active: Boolean,
     val hasOutrights: Boolean
 )
+
+data class SportGroupUiModel(
+    val groupName: String,
+    val sports: List<SportUiModel>
+)

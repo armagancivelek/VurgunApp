@@ -5,14 +5,16 @@ import androidx.compose.runtime.Immutable
 import com.android.vurgun.common.core.CoreState
 import com.android.vurgun.common_ui.component.SnackBarType
 import com.android.vurgun.domain.model.ScoresUiModel
-import com.android.vurgun.domain.model.SportUiModel
+import com.android.vurgun.domain.model.SportGroupUiModel
 
 class HomeScreenContract {
 
     @Immutable
     data class UiState(
         override val isLoading: Boolean,
-        val sports: List<SportUiModel> = emptyList(),
+        val sportGroups: List<SportGroupUiModel> = emptyList(),
+        val filteredSportGroups: List<SportGroupUiModel> = emptyList(),
+        val searchQuery: String = "",
         val scores: List<ScoresUiModel> = emptyList(),
     ) : CoreState.ViewState
 
@@ -25,6 +27,10 @@ class HomeScreenContract {
             @DrawableRes val iconRes: Int,
             val errorMessage: String,
             val type: SnackBarType,
+        ) : Event()
+
+        data class UpdateSearchQuery(
+            val query: String
         ) : Event()
     }
 

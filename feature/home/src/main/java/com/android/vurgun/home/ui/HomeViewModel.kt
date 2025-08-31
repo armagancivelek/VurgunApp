@@ -3,6 +3,7 @@ package com.android.vurgun.home.ui
 import androidx.lifecycle.viewModelScope
 import com.android.vurgun.common.core.CoreViewModel
 import com.android.vurgun.common_ui.component.SnackBarType
+import com.android.vurgun.domain.model.SportGroupUiModel
 import com.android.vurgun.domain.usecase.GetScoresUseCase
 import com.android.vurgun.domain.usecase.GetSportsUseCase
 import com.android.vurgun.network.common.NetworkConnectivityManager
@@ -89,10 +90,17 @@ class HomeViewModel @Inject constructor(
                     updateState { it.copy(isLoading = true) }
                 },
                 onSuccess = { sports ->
+                    val groupedSports = sports.groupBy { it.group }.map { (group, sportsList) ->
+                        SportGroupUiModel(
+                            groupName = group,
+                            sports = sportsList
+                        )
+                    }
                     updateState {
                         it.copy(
                             isLoading = false,
-                            sports = sports
+                            sportGroups = groupedSports,
+                            filteredSportGroups = groupedSports
                         )
                     }
                 },
@@ -112,9 +120,42 @@ class HomeViewModel @Inject constructor(
         }
     }
 
+    fun onEvent(event: HomeScreenContract.Event) {
+        when (event) {
+            is HomeScreenContract.Event.UpdateSearchQuery -> {
+                updateSearchQuery(event.query)
+            }
+            else -> {}
+        }
+    }
+
+    private fun updateSearchQuery(query: String) {
+        val currentSportGroups = uiState.value.sportGroups
+        val filteredGroups = if (query.isEmpty()) {
+            currentSportGroups
+        } else {
+            currentSportGroups.mapNotNull { group ->
+                val filteredSports = group.sports.filter { sport ->
+                    sport.title.contains(query, ignoreCase = true) ||
+                    sport.description.contains(query, ignoreCase = true) ||
+                    sport.group.contains(query, ignoreCase = true)
+                }
+                if (filteredSports.isNotEmpty()) {
+                    group.copy(sports = filteredSports)
+                } else null
+            }
+        }
+
+        updateState {
+            it.copy(
+                searchQuery = query,
+                filteredSportGroups = filteredGroups
+            )
+        }
+    }
+
     override fun retry() {
         getSports()
-        getScores()
     }
 
 
