@@ -12,7 +12,12 @@ class LoggingInterceptor @Inject constructor() : Interceptor {
         val builder = request.newBuilder()
         request = builder.build()
         val response = chain.proceed(request)
-        L.tag(LOGGING_URL).i { "${request.url} -- StatusCode ${response.code}" }
+        try {
+            L.tag(LOGGING_URL).i { "${request.url} -- StatusCode ${response.code}" }
+        } catch (e: Exception) {
+            // Fallback to system logging if Lumberjack is not initialized
+            println("$LOGGING_URL: ${request.url} -- StatusCode ${response.code}")
+        }
         return response
     }
 
