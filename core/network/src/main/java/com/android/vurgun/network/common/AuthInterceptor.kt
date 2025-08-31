@@ -16,29 +16,19 @@ constructor(
 
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
-        val builder = request.newBuilder()
+        val apiKey = provider.getApiKey()
 
-        val accessToken = provider.getApiKey()
-
-        accessToken.let {
-            builder.addHeaders(it)
+        if (apiKey.isNotEmpty()) {
+            val url = request.url.newBuilder()
+                .addQueryParameter("apiKey", apiKey)
+                .build()
+            
+            request = request.newBuilder()
+                .url(url)
+                .build()
         }
 
-        request = builder.build()
         return chain.proceed(request)
     }
 
-    private fun Request.Builder.addHeaders(accessToken: String) =
-        this.apply {
-            header("Content-Type", "application/json;charset=utf-8")
-            header("Accept-Language", Locale.getDefault().language)
-            header("device-type", "android")
-
-            if (accessToken.isNotEmpty()) header(HEADER_AUTHORIZATION, "$CLIENT_ID $accessToken")
-        }
-
-    companion object {
-        const val HEADER_AUTHORIZATION = "Authorization"
-        const val CLIENT_ID = "Client-ID"
-    }
 }

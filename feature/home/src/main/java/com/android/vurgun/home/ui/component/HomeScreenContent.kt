@@ -10,5 +10,7 @@ internal fun HomeScreenContent(
     viewModel: HomeViewModel,
 ) {
 
+    CustomHorizontalPagerComponent()
+
 
 }
