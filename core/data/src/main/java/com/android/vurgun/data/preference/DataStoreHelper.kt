@@ -1,7 +1,7 @@
 package com.android.vurgun.data.preference
 
+import androidx.datastore.preferences.core.Preferences
 import kotlinx.coroutines.flow.Flow
-import java.util.prefs.Preferences
 
 interface DataStoreHelper {
 
