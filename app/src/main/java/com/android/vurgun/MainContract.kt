@@ -15,6 +15,6 @@ class MainContract {
 
 
     object Static {
-        const val KEEP_SPLASH_SCREEN_DELAY: Long = 6000L
+        const val KEEP_SPLASH_SCREEN_DELAY: Long = 2000L
     }
 }

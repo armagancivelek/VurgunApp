@@ -14,6 +14,7 @@
 
     <style name="Theme.Vurgun.Splash" parent="NightAdjusted.Theme.Splash">
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash</item>
+        <item name="windowSplashScreenBackground">@color/blue</item>
         <item name="postSplashScreenTheme">@style/Theme.Vurgun</item>
     </style>
 
