@@ -18,6 +18,11 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
             }
 
             dependencies {
+                // Projects
+                implementation(project(":core:common"))
+                implementation(project(":core:common-ui"))
+                implementation(project(":core:domain"))
+
                 // Test
                 testImplementation(kotlin("test"))
                 androidTestImplementation(kotlin("test"))

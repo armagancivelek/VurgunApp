@@ -21,7 +21,8 @@ import com.android.vurgun.common_ui.theme.BaseAppTheme
 import com.android.vurgun.common_ui.theme.LocalAppSnackBarHostState
 import com.android.vurgun.common_ui.theme.LocalAppSnackBarViewModel
 import com.android.vurgun.common_ui.theme.LocalNetworkStatusFlow
-import com.android.vurgun.ui.state.rememberUnsplashAppState
+import com.android.vurgun.ui.VurgunApp
+import com.android.vurgun.ui.state.rememberAppState
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,7 +46,7 @@ class MainActivity : ComponentActivity() {
         }
         setContent {
             val appSnackBarHostState = remember { SnackbarHostState() }
-            val appState = rememberUnsplashAppState(
+            val appState = rememberAppState(
                 networkConnectivityManager = viewModel.networkConnectivityManager,
             )
 
@@ -58,9 +59,9 @@ class MainActivity : ComponentActivity() {
                     Surface(
                         modifier = Modifier.fillMaxSize(),
                     ) {
-//                        UnsplashApp(
-//                            appState = appState,
-//                        )
+                        VurgunApp(
+                            appState = appState,
+                        )
                         AppSnackBarView()
                     }
                 }

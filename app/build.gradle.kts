@@ -13,4 +13,7 @@ android {
 dependencies {
     implementation(project(":core:network"))
     implementation(project(":core:data"))
+    implementation(project(":feature:home"))
+    implementation(project(":feature:slips"))
+    implementation(project(":feature:current-slip"))
 }

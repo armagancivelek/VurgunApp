@@ -49,6 +49,7 @@ import com.android.vurgun.common_ui.R
 import com.android.vurgun.common_ui.icon.AppIcons
 import com.android.vurgun.common_ui.theme.Black900
 import com.android.vurgun.common_ui.theme.surfaceContainerLowLight
+import com.android.vurgun.util.Constants
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalAnimationApi::class)
 @Composable
@@ -56,10 +57,10 @@ fun AppTopBar(
     @StringRes titleRes: Int,
     searchQuery: String,
     onSearchQueryChange: (String) -> Unit,
-    navigationIcon: ImageVector?,
+    navigationIcon: ImageVector? = null,
     navigationIconContentDescription: String,
-    actionIcon: ImageVector,
-    actionIconContentDescription: String,
+    actionIcon: ImageVector? = null,
+    actionIconContentDescription: String = Constants.EMPTY_STRING,
     modifier: Modifier = Modifier,
     colors: TopAppBarColors = TopAppBarDefaults.centerAlignedTopAppBarColors(),
     onNavigationClick: () -> Unit = {},
@@ -106,21 +107,6 @@ fun AppTopBar(
                             )
                             .focusRequester(focusRequester),
                         decorationBox = { innerTextField ->
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxSize()
-                                    .padding(horizontal = 12.dp),
-                                contentAlignment = Alignment.CenterStart
-                            ) {
-                                if (searchQuery.isEmpty()) {
-                                    Text(
-                                        text = stringResource(R.string.search),
-                                        fontSize = 13.sp,
-                                        color = MaterialTheme.colorScheme.onSurfaceVariant
-                                    )
-                                }
-                                innerTextField()
-                            }
                         }
                     )
                 } else {
@@ -151,13 +137,16 @@ fun AppTopBar(
             }
         },
         actions = {
-            IconButton(onClick = onActionClick) {
-                Icon(
-                    imageVector = actionIcon,
-                    contentDescription = actionIconContentDescription,
-                    tint = MaterialTheme.colorScheme.onSurface,
-                )
+            actionIcon?.let {
+                IconButton(onClick = onActionClick) {
+                    Icon(
+                        imageVector = actionIcon,
+                        contentDescription = actionIconContentDescription,
+                        tint = MaterialTheme.colorScheme.onSurface,
+                    )
+                }
             }
+
         },
         colors = colors,
         modifier = modifier.testTag("AppTopBar"),
@@ -173,10 +162,9 @@ private fun NiaTopAppBarPreview() {
             titleRes = R.string.feature_home_title,
             searchQuery = "",
             onSearchQueryChange = {},
-            navigationIcon = AppIcons.Search,
             navigationIconContentDescription = "Navigation icon",
-            actionIcon = AppIcons.MoreVert,
             actionIconContentDescription = "Action icon",
+            actionIcon = AppIcons.Notification,
         )
     }
 }

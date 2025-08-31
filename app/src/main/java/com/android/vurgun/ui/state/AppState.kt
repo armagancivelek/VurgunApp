@@ -16,15 +16,18 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.android.vurgun.MainViewModel
 import com.android.vurgun.common.route.AppRoute
+import com.android.vurgun.current_slip.navigation.navigateToCurrentSlip
+import com.android.vurgun.home.navigation.navigateToHome
 import com.android.vurgun.navigation.TopLevelDestination
 import com.android.vurgun.network.common.NetworkConnectivityManager
+import com.android.vurgun.slips.navigation.navigateToSlips
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 
 @Composable
-fun rememberUnsplashAppState(
+fun rememberAppState(
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
     viewModel: MainViewModel = hiltViewModel(),
@@ -107,7 +110,16 @@ class AppState(
 
             when (topLevelDestination) {
                 TopLevelDestination.HOME -> {
-                 //   navController.navigateToHome(topLevelNavOptions)
+                    navController.navigateToHome(topLevelNavOptions)
+                }
+
+
+                TopLevelDestination.SLIP -> {
+                    navController.navigateToSlips(topLevelNavOptions)
+                }
+
+                TopLevelDestination.CURRENT_SLIP -> {
+                    navController.navigateToCurrentSlip(topLevelNavOptions)
                 }
             }
         }

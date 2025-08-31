@@ -9,4 +9,10 @@ sealed interface AppRoute {
     @Serializable
     data object HomeRoute : AppRoute
 
+    @Serializable
+    data object CurrentSlipRoute : AppRoute
+
+    @Serializable
+    data object SlipsRoute : AppRoute
+
 }

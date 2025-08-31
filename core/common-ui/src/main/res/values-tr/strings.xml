@@ -1,17 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="feature_home_title">Home.</string>
-    <string name="feature_bookmarks_title">Kaydedilenler.</string>
-    <string name="feature_interests_title">Hobiler</string>
-    <string name="feature_settings_top_app_bar_action_icon_description">Ayarlar</string>
-    <string name="feature_settings_top_app_bar_navigation_icon_description">Ara</string>
-
-
-    <string name="profile_total_collections">Toplam Koleksiyon</string>
-    <string name="profile_total_likes">Toplam Beğeni</string>
-    <string name="profile_total_photos">Toplam Fotoğraf</string>
-
-    <string name="search">Ara...</string>
+    <string name="feature_home_title">Ana Sayfa</string>
+    <string name="feature_slip_title">Kuponlarım</string>
+    <string name="feature_current_slip_title">Kupon</string>
 
 </resources>

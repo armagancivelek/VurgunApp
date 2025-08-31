@@ -42,6 +42,7 @@ val primaryLight = Color(0xFFFDFDFD)
 val primaryDark = Color(0xFF000000)
 
 val BlueColor = Color(0xFF146D8D)
+val WhiteColor = Color(0xFFFFFFFF)
 val AlertErrorColor = Color(0xFFD90000)
 val AlertWarningColor = Color(0xFFDAA745)
 val AlertInformationColor = Color(0xFF3280C8)

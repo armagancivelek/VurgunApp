@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="feature_home_title">Home</string>
-    <string name="feature_bookmarks_title">Bookmarks</string>
-    <string name="feature_interests_title">Interests</string>
-    <string name="feature_settings_top_app_bar_action_icon_description">Settings</string>
-    <string name="feature_settings_top_app_bar_navigation_icon_description">Search</string>
+    <string name="feature_slip_title">Bet Slips</string>
+    <string name="feature_current_slip_title">Bet Slip</string>
 
-    <string name="profile_total_collections">Total Collections</string>
-    <string name="profile_total_likes">Total Likes</string>
-    <string name="profile_total_photos">Total Photos</string>
 
-    <string name="search">Search...</string>
 </resources>
