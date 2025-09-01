@@ -17,6 +17,7 @@ class SportEventsScreenContract {
         val sportKey: String = "",
         val sportTitle: String = "",
         val isSearchVisible: Boolean = false,
+        val selectedBets: Map<String, String> = emptyMap(),
     ) : CoreState.ViewState
 
     sealed class Event : CoreState.Event {

@@ -59,7 +59,8 @@ fun SportEventsScreen(
             onEventClick = { event ->
                 onEventClick(event.id)
             },
-            onSearchToggle = viewModel::toggleSearch
+            onSearchToggle = viewModel::toggleSearch,
+            onOddsClick = viewModel::selectOdds
         )
     }
     

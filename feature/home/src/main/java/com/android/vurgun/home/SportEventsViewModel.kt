@@ -104,6 +104,20 @@ class SportEventsViewModel @Inject constructor(
         }
     }
 
+    fun selectOdds(eventId: String, betType: String) {
+        updateState {
+            it.copy(
+                selectedBets = it.selectedBets.toMutableMap().apply {
+                    if (get(eventId) == betType) {
+                        remove(eventId)
+                    } else {
+                        put(eventId, betType)
+                    }
+                }
+            )
+        }
+    }
+
     private fun updateEventsData(events: List<OddsUiModel>) {
         val sportTitle = events.firstOrNull()?.sportTitle ?: ""
         updateState {

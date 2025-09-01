@@ -32,12 +32,14 @@ internal fun SportEventsScreenContent(
     onSearchQueryChange: (String) -> Unit,
     onEventClick: (OddsUiModel) -> Unit,
     onSearchToggle: () -> Unit,
+    onOddsClick: (String, String) -> Unit,
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(16.dp)
+            .padding(horizontal = 16.dp)
     ) {
+        Spacer(modifier = Modifier.height(8.dp))
         if (uiState.isSearchVisible) {
             Row(
                 modifier = Modifier
@@ -78,19 +80,19 @@ internal fun SportEventsScreenContent(
             }
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(8.dp))
 
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
+            contentPadding = androidx.compose.foundation.layout.PaddingValues(bottom = 20.dp)
         ) {
             items(uiState.filteredEventsUiModel) { event ->
                 EventCard(
                     event = event,
                     onClick = onEventClick,
-                    onOddsClick = { eventId, betType ->
-                        // Handle odds selection
-                    }
+                    selectedBetType = uiState.selectedBets[event.id],
+                    onOddsClick = onOddsClick
                 )
             }
         }
@@ -131,6 +133,7 @@ private fun SportEventsScreenContentPreview() {
         ),
         onSearchQueryChange = {},
         onEventClick = {},
-        onSearchToggle = {}
+        onSearchToggle = {},
+        onOddsClick = { _, _ -> }
     )
 }

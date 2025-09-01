@@ -8,10 +8,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.util.trace
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hasRoute
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
+import androidx.navigation.NavOptions
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navOptions
 import com.android.vurgun.MainViewModel
@@ -74,8 +76,12 @@ class AppState(
 
     val currentTopLevelDestination: TopLevelDestination?
         @Composable get() {
-            return TopLevelDestination.entries.firstOrNull { topLevelDestination ->
-                currentDestination?.hasRoute(route = topLevelDestination.route) == true
+            return when {
+                currentDestination?.hasRoute(route = AppRoute.HomeRoute::class) == true -> TopLevelDestination.HOME
+                currentDestination?.hasRoute(route = AppRoute.SportEventsRoute::class) == true -> TopLevelDestination.HOME
+                currentDestination?.hasRoute(route = AppRoute.SlipsRoute::class) == true -> TopLevelDestination.SLIP
+                currentDestination?.hasRoute(route = AppRoute.CurrentSlipRoute::class) == true -> TopLevelDestination.CURRENT_SLIP
+                else -> null
             }
         }
 
@@ -94,34 +100,34 @@ class AppState(
      */
     fun navigateToTopLevelDestination(topLevelDestination: TopLevelDestination) {
         trace("Navigation: ${topLevelDestination.name}") {
-            val topLevelNavOptions = navOptions {
-                // Pop up to the start destination of the graph to
-                // avoid building up a large stack of destinations
-                // on the back stack as users select items
-                popUpTo(navController.graph.findStartDestination().id) {
-                    saveState = true
-                }
-                // Avoid multiple copies of the same destination when
-                // reselecting the same item
-                launchSingleTop = true
-                // Restore state when reselecting a previously selected item
-                restoreState = true
-            }
+            val topLevelNavOptions = createTopLevelNavOptions(navController)
 
             when (topLevelDestination) {
                 TopLevelDestination.HOME -> {
-                    navController.navigateToHome(topLevelNavOptions)
+                    val currentRoute = navController.currentBackStackEntry?.destination?.route
+                    if (currentRoute?.contains(AppRoute.SportEventsRoute::class.simpleName.orEmpty()) == true) {
+                        navController.popBackStack()
+                    } else {
+                        navController.navigateToHome(topLevelNavOptions)
+                    }
                 }
-
-
                 TopLevelDestination.SLIP -> {
                     navController.navigateToSlips(topLevelNavOptions)
                 }
-
                 TopLevelDestination.CURRENT_SLIP -> {
                     navController.navigateToCurrentSlip(topLevelNavOptions)
                 }
             }
+        }
+    }
+
+    private fun createTopLevelNavOptions(navController: NavController): NavOptions {
+        return navOptions {
+            popUpTo(navController.graph.findStartDestination().id) {
+                saveState = true
+            }
+            launchSingleTop = true
+            restoreState = true
         }
     }
 

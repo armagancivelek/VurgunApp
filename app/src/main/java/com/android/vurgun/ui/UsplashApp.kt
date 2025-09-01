@@ -99,7 +99,7 @@ fun VurgunApp(
                             contentDescription = "Logo",
                             modifier = Modifier
                                 .size(64.dp)
-                                .offset(x = -14.dp,y =- 4.dp)
+                                .offset(x = -14.dp, y = -4.dp)
                         )
                     }
                 },
@@ -208,9 +208,8 @@ fun VurgunApp(
                         selectedItem = currentDestination,
                         navigationItems = appState.topLevelDestinations,
                         onClickedBottomNavItem = { selectedItem ->
-                            if (selectedItem != currentDestination) {
-                                appState.navigateToTopLevelDestination(selectedItem)
-                            }
+                            appState.navigateToTopLevelDestination(selectedItem)
+
                         },
                     )
                 }
