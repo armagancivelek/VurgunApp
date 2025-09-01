@@ -1,5 +1,6 @@
 package com.android.vurgun.ui
 
+import android.annotation.SuppressLint
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -52,11 +53,13 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.android.vurgun.R
 import com.android.vurgun.common_ui.theme.BlueColor
+import com.android.vurgun.common_ui.theme.LocalAppSharedViewModel
 import com.android.vurgun.common_ui.theme.WhiteColor
 import com.android.vurgun.navigation.AppNavHost
 import com.android.vurgun.navigation.TopLevelDestination
 import com.android.vurgun.ui.state.AppState
 
+@SuppressLint("DefaultLocale")
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class, ExperimentalFoundationApi::class, ExperimentalComposeUiApi::class, ExperimentalAnimationApi::class)
 @Composable
 fun VurgunApp(
@@ -64,6 +67,8 @@ fun VurgunApp(
 ) {
     val snackBarHostState = remember { SnackbarHostState() }
     val isOffline by appState.isOffline.collectAsStateWithLifecycle()
+    val appSharedViewModel = LocalAppSharedViewModel.current
+    val bettingSlipState by appSharedViewModel.bettingSlipState.collectAsStateWithLifecycle()
 
     // If user is not connected to the internet show a snack bar to inform them.
     val notConnectedMessage = stringResource(R.string.not_connected)
@@ -145,12 +150,12 @@ fun VurgunApp(
                             verticalArrangement = Arrangement.Center
                         ) {
                             Text(
-                                text = "0 Maç",
+                                text = "${bettingSlipState.totalMatches} Maç",
                                 color = WhiteColor,
                                 fontSize = 14.sp
                             )
                             Text(
-                                text = "0,00",
+                                text = String.format("%.2f", bettingSlipState.totalOdds),
                                 color = WhiteColor,
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold
@@ -178,12 +183,12 @@ fun VurgunApp(
                             verticalArrangement = Arrangement.Center
                         ) {
                             Text(
-                                text = "0 Maç",
+                                text = "${bettingSlipState.totalMatches} Maç",
                                 color = Color.Black,
                                 fontSize = 14.sp
                             )
                             Text(
-                                text = "0,00",
+                                text = String.format("%.2f", bettingSlipState.totalOdds),
                                 color = Color.Black,
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold

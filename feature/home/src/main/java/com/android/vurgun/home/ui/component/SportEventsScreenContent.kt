@@ -33,6 +33,7 @@ internal fun SportEventsScreenContent(
     onEventClick: (OddsUiModel) -> Unit,
     onSearchToggle: () -> Unit,
     onOddsClick: (String, String) -> Unit,
+    selectedBets: Map<String, String> = emptyMap(),
 ) {
     Column(
         modifier = Modifier
@@ -91,7 +92,7 @@ internal fun SportEventsScreenContent(
                 EventCard(
                     event = event,
                     onClick = onEventClick,
-                    selectedBetType = uiState.selectedBets[event.id],
+                    selectedBetType = selectedBets[event.id],
                     onOddsClick = onOddsClick
                 )
             }

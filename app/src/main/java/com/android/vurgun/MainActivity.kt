@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
@@ -20,7 +21,9 @@ import com.android.vurgun.common_ui.screen.snackbar.AppSnackBarViewModel
 import com.android.vurgun.common_ui.theme.BaseAppTheme
 import com.android.vurgun.common_ui.theme.LocalAppSnackBarHostState
 import com.android.vurgun.common_ui.theme.LocalAppSnackBarViewModel
+import com.android.vurgun.common_ui.theme.LocalAppSharedViewModel
 import com.android.vurgun.common_ui.theme.LocalNetworkStatusFlow
+import com.android.vurgun.common_ui.viewmodel.AppSharedViewModel
 import com.android.vurgun.ui.VurgunApp
 import com.android.vurgun.ui.state.rememberAppState
 import dagger.hilt.android.AndroidEntryPoint
@@ -49,11 +52,13 @@ class MainActivity : ComponentActivity() {
             val appState = rememberAppState(
                 networkConnectivityManager = viewModel.networkConnectivityManager,
             )
+            val appSharedViewModel: AppSharedViewModel = hiltViewModel()
 
             CompositionLocalProvider(
                 LocalAppSnackBarViewModel provides appSnackBarViewModel,
                 LocalAppSnackBarHostState provides appSnackBarHostState,
                 LocalNetworkStatusFlow provides appState.isOffline,
+                LocalAppSharedViewModel provides appSharedViewModel,
             ) {
                 BaseAppTheme {
                     Surface(

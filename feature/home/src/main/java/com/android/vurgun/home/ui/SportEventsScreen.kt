@@ -12,8 +12,10 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.android.vurgun.common_ui.component.LoadingView
 import com.android.vurgun.common_ui.component.SnackBarType
+import com.android.vurgun.common_ui.theme.LocalAppSharedViewModel
 import com.android.vurgun.common_ui.theme.LocalAppSnackBarViewModel
 import com.android.vurgun.common_ui.theme.LocalContentShimmerTheme
+import com.android.vurgun.common_ui.viewmodel.SelectedBet
 import com.android.vurgun.home.SportEventsScreenContract
 import com.android.vurgun.home.SportEventsViewModel
 import com.android.vurgun.home.common.LocalHomeContentShimmer
@@ -28,7 +30,9 @@ fun SportEventsScreen(
     onEventClick: (String) -> Unit,
 ) {
     val appSnackBarViewModel = LocalAppSnackBarViewModel.current
+    val appSharedViewModel = LocalAppSharedViewModel.current
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val bettingSlipState by appSharedViewModel.bettingSlipState.collectAsStateWithLifecycle()
 
     LaunchedEffect(viewModel.event) {
         viewModel.event.collectLatest { event ->
@@ -60,7 +64,27 @@ fun SportEventsScreen(
                 onEventClick(event.id)
             },
             onSearchToggle = viewModel::toggleSearch,
-            onOddsClick = viewModel::selectOdds
+            onOddsClick = { eventId, betType ->
+                val event = state.eventsUiModel.find { it.id == eventId } ?: return@SportEventsScreenContent
+                
+                val odds = when (betType) {
+                    "home" -> event.bookmakers.firstOrNull()?.markets?.firstOrNull()?.outcomes?.find { it.name == event.homeTeam }?.price ?: 1.73
+                    "draw" -> event.bookmakers.firstOrNull()?.markets?.firstOrNull()?.outcomes?.find { it.name == "Draw" }?.price ?: 1.90
+                    "away" -> event.bookmakers.firstOrNull()?.markets?.firstOrNull()?.outcomes?.find { it.name == event.awayTeam }?.price ?: 1.25
+                    else -> 1.0
+                }
+                
+                val selectedBet = SelectedBet(
+                    eventId = eventId,
+                    betType = betType,
+                    odds = odds,
+                    homeTeam = event.homeTeam,
+                    awayTeam = event.awayTeam
+                )
+                
+                appSharedViewModel.toggleBet(selectedBet)
+            },
+            selectedBets = bettingSlipState.selectedBets.mapValues { it.value.betType }
         )
     }
     
