@@ -3,6 +3,7 @@
     <string name="feature_home_title">Home</string>
     <string name="feature_slip_title">Bet Slips</string>
     <string name="feature_current_slip_title">Bet Slip</string>
+    <string name="search_sports_placeholder">Search sports...</string>
 
 
 </resources>

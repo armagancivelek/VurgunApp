@@ -8,11 +8,11 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
-import com.android.vurgun.home.HomeScreenContract
-import com.android.vurgun.domain.model.SportUiModel
+import androidx.compose.ui.unit.dp
 import com.android.vurgun.domain.model.SportGroupUiModel
+import com.android.vurgun.domain.model.SportUiModel
+import com.android.vurgun.home.HomeScreenContract
 
 @Composable
 internal fun HomeScreenContent(
@@ -26,8 +26,7 @@ internal fun HomeScreenContent(
     ) {
         SearchBar(
             searchQuery = uiState.searchQuery,
-            onSearchQueryChange = onSearchQueryChange,
-            placeholder = "Search sports..."
+            onSearchQueryChange = onSearchQueryChange
         )
 
         LazyVerticalGrid(

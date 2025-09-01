@@ -14,15 +14,17 @@ import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.tooling.preview.Preview
+import com.android.vurgun.common_ui.R
 
 @Composable
 fun SearchBar(
     searchQuery: String,
     onSearchQueryChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    placeholder: String = "Search sports..."
+    placeholder: String = ""
 ) {
     OutlinedTextField(
         value = searchQuery,
@@ -32,7 +34,7 @@ fun SearchBar(
             .padding(horizontal = 16.dp, vertical = 8.dp),
         placeholder = {
             Text(
-                text = placeholder,
+                text = if (placeholder.isNotEmpty()) placeholder else stringResource(R.string.search_sports_placeholder),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )

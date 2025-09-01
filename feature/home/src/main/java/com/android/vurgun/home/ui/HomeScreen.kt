@@ -9,7 +9,6 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.material3.SnackbarDuration
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
@@ -19,14 +18,13 @@ import androidx.core.content.ContextCompat
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.android.vurgun.common_ui.component.LoadingView
-import com.android.vurgun.home.common.LocalHomeContentShimmer
-import com.android.vurgun.home.ui.component.HomeScreenContent
 import com.android.vurgun.common_ui.component.SnackBarType
 import com.android.vurgun.common_ui.theme.LocalAppSnackBarViewModel
 import com.android.vurgun.common_ui.theme.LocalContentShimmerTheme
-import com.android.vurgun.common_ui.theme.WhiteColor
 import com.android.vurgun.home.HomeScreenContract
 import com.android.vurgun.home.HomeViewModel
+import com.android.vurgun.home.common.LocalHomeContentShimmer
+import com.android.vurgun.home.ui.component.HomeScreenContent
 import com.valentinilk.shimmer.ShimmerBounds
 import com.valentinilk.shimmer.rememberShimmer
 import kotlinx.coroutines.flow.collectLatest
@@ -84,16 +82,16 @@ fun HomeScreen(
             theme = LocalContentShimmerTheme.current,
         ),
     ) {
-         Surface(color = WhiteColor) {
-             HomeScreenContent(
-                 uiState = state,
-                 onSearchQueryChange = viewModel::updateSearchQuery,
-                 onToggleGroupExpansion = viewModel::toggleGroupExpansion,
-                 onSportClick = { sport ->
-                     // Handle sport selection
-                 }
-             )
-         }
+
+        HomeScreenContent(
+            uiState = state,
+            onSearchQueryChange = viewModel::updateSearchQuery,
+            onToggleGroupExpansion = viewModel::toggleGroupExpansion,
+            onSportClick = { sport ->
+
+            }
+        )
+
     }
     AnimatedVisibility(
         visible = state.isLoading,

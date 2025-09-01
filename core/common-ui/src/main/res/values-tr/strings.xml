@@ -4,5 +4,6 @@
     <string name="feature_home_title">Ana Sayfa</string>
     <string name="feature_slip_title">Kuponlarım</string>
     <string name="feature_current_slip_title">Kupon</string>
+    <string name="search_sports_placeholder">Spor ara...</string>
 
 </resources>
