@@ -3,11 +3,11 @@ package com.android.vurgun.network.data
 import kotlinx.serialization.Serializable
 
 /**
- *
- * It should be edited according to the error response returned from the body.
- * @param errors A list of error messages
+ *  Represents a network error response from the server.
  */
 @Serializable
 data class NetworkErrorResponse(
-    val errors: List<String>?,
+    val details_url: String?,
+    val error_code: String?,
+    val message: String?
 )

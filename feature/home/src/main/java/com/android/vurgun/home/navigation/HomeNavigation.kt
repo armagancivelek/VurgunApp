@@ -9,13 +9,17 @@ import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
 import com.android.vurgun.common.route.AppRoute
 import com.android.vurgun.home.ui.HomeScreen
+import com.android.vurgun.home.ui.SportEventsScreen
 
 fun NavController.navigateToHome(navOptions: NavOptions?) =
     navigate(route = AppRoute.HomeRoute, navOptions)
 
+fun NavController.navigateToSportEvents(sportKey: String, navOptions: NavOptions? = null) =
+    navigate(route = AppRoute.SportEventsRoute(sportKey), navOptions)
+
 fun NavGraphBuilder.homeScreen(
     onItemClick: (String?) -> Unit,
-    onShowSnackbar: suspend (String, String?) -> Boolean,
+    onNavigateToSportEvents: (String) -> Unit,
 ) {
 
     composable<AppRoute.HomeRoute>(
@@ -24,6 +28,16 @@ fun NavGraphBuilder.homeScreen(
     ) {
         HomeScreen(
             onItemClick = onItemClick,
+            onSportClick = onNavigateToSportEvents,
         )
+    }
+
+    composable<AppRoute.SportEventsRoute>(
+        enterTransition = { fadeIn(animationSpec = tween(1000)) },
+        exitTransition = { fadeOut(animationSpec = tween(1000)) },
+    ) {
+        SportEventsScreen(
+            onEventClick = onItemClick,
+            )
     }
 }

@@ -11,8 +11,7 @@ fun NavController.navigateToCurrentSlip(navOptions: NavOptions) =
     navigate(route = AppRoute.CurrentSlipRoute, navOptions)
 
 fun NavGraphBuilder.currentSlipsScreen(
-    onItemClick: (String) -> Unit,
-    onShowSnackbar: suspend (String, String?) -> Boolean,
+    onItemClick: (String) -> Unit
 ) {
     composable<AppRoute.CurrentSlipRoute> {
         CurrentSlipScreen(

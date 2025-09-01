@@ -38,10 +38,10 @@ fun SportCard(
             .height(120.dp),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(
-            containerColor = WhiteColor
+            containerColor = if (sport.active) WhiteColor else Color(0xFFF5F5F5)
         ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        onClick = { onClick(sport) }
+        elevation = CardDefaults.cardElevation(defaultElevation = if (sport.active) 4.dp else 2.dp),
+        onClick = { if (sport.active) onClick(sport) }
     ) {
         Column(
             modifier = Modifier
@@ -57,7 +57,7 @@ fun SportCard(
                     text = sport.title,
                     style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface,
+                    color = if (sport.active) MaterialTheme.colorScheme.onSurface else MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                     modifier = Modifier.weight(1f)
@@ -76,7 +76,7 @@ fun SportCard(
             Text(
                 text = sport.description,
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                color = if (sport.active) MaterialTheme.colorScheme.onSurfaceVariant else MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f),
                 maxLines = 2,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.padding(top = 8.dp)
@@ -94,7 +94,7 @@ private fun SportCardPreview() {
             group = "Basketball",
             title = "NBA",
             description = "National Basketball Association",
-            active = true,
+            active = false,
             hasOutrights = true
         )
     )

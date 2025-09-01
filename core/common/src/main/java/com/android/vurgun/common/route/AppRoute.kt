@@ -15,4 +15,7 @@ sealed interface AppRoute {
     @Serializable
     data object SlipsRoute : AppRoute
 
+    @Serializable
+    data class SportEventsRoute(val sportKey: String) : AppRoute
+
 }

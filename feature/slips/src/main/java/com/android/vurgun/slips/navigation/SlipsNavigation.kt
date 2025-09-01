@@ -12,7 +12,6 @@ fun NavController.navigateToSlips(navOptions: NavOptions) =
 
 fun NavGraphBuilder.slipsScreen(
     onItemClick: (String) -> Unit,
-    onShowSnackbar: suspend (String, String?) -> Boolean,
 ) {
     composable<AppRoute.SlipsRoute> {
         SlipsScreen(

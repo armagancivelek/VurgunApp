@@ -9,6 +9,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import com.android.vurgun.ui.state.AppState
 import com.android.vurgun.home.navigation.homeScreen
+import com.android.vurgun.home.navigation.navigateToSportEvents
 import com.android.vurgun.slips.navigation.slipsScreen
 import com.android.vurgun.current_slip.navigation.currentSlipsScreen
 
@@ -30,17 +31,17 @@ fun AppNavHost(
             onItemClick = { photoId ->
 
             },
-            onShowSnackbar = { _, _ -> false },
+            onNavigateToSportEvents = { sportKey ->
+                appState.navController.navigateToSportEvents(sportKey)
+            }
         )
 
         slipsScreen(
             onItemClick = { },
-            onShowSnackbar = { _, _ -> false },
         )
 
         currentSlipsScreen(
-            onItemClick = { },
-            onShowSnackbar = { _, _ -> false },
+            onItemClick = { }
         )
     }
 }
