@@ -83,18 +83,37 @@ internal fun SportEventsScreenContent(
 
         Spacer(modifier = Modifier.height(8.dp))
 
-        LazyColumn(
-            modifier = Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = androidx.compose.foundation.layout.PaddingValues(bottom = 20.dp),
-        ) {
-            items(uiState.filteredEventsUiModel) { event ->
-                EventCard(
-                    event = event,
-                    onClick = onEventClick,
-                    selectedBetType = selectedBets[event.id],
-                    onOddsClick = onOddsClick,
+        if (uiState.filteredEventsUiModel.isEmpty() && !uiState.isLoading) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+            ) {
+                Text(
+                    text = "⚠️",
+                    style = MaterialTheme.typography.headlineLarge,
                 )
+                Spacer(modifier = Modifier.height(16.dp))
+                Text(
+                    text = stringResource(R.string.no_sport_details_available),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                )
+            }
+        } else {
+            LazyColumn(
+                modifier = Modifier.fillMaxSize(),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                contentPadding = androidx.compose.foundation.layout.PaddingValues(bottom = 20.dp),
+            ) {
+                items(uiState.filteredEventsUiModel) { event ->
+                    EventCard(
+                        event = event,
+                        onClick = onEventClick,
+                        selectedBetType = selectedBets[event.id],
+                        onOddsClick = onOddsClick,
+                    )
+                }
             }
         }
     }

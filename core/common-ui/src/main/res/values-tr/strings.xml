@@ -29,6 +29,7 @@
     <string name="max_win_short">Maks. kazanç</string>
     <string name="played_date">Oynanma Tarihi: %s</string>
     <string name="insufficient_balance">"Bakiyeni yetersiz ! "</string>
+    <string name="no_sport_details_available">Spor detayları görüntülenemiyor</string>
 
 
 </resources>
