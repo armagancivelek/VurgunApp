@@ -52,20 +52,11 @@ internal fun Project.configureKotlinAndroid(
 
         signingConfigs {
             create("release") {
-                // Config file
-//            val properties = Properties()
-//            properties.load(FileInputStream(file("sign/keystore.config")))
-//
-//            // Set config
-//            keyAlias = properties["keyAlias"].toString()
-//            keyPassword = properties["keyPassword"].toString()
-//            storeFile = file(properties["storeFile"].toString())
-//            storePassword = properties["storePassword"].toString()
             }
         }
         buildTypes {
             debug {
-                buildConfigField("String", "API_KEY", localProperties().getProperty("API_KEY"))
+                buildConfigField("String", "API_KEY", defaultSecrets().getProperty("API_KEY"))
                 proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro",
@@ -75,7 +66,7 @@ internal fun Project.configureKotlinAndroid(
                 versionNameSuffix = ".${gitCommitCount()}-SNAPSHOT"
             }
             release {
-                buildConfigField("String", "API_KEY", localProperties().getProperty("API_KEY_PROD"))
+                buildConfigField("String", "API_KEY", defaultSecrets().getProperty("API_KEY"))
                 proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro",
@@ -209,13 +200,12 @@ internal fun Project.defaultSecrets(): Properties {
     return properties
 }
 
-internal fun Project.localProperties() : Properties {
+internal fun Project.localProperties(): Properties {
     val keystoreFile = this.rootProject.file("local.properties")
     val properties = Properties()
     properties.load(keystoreFile.inputStream())
     return properties
 }
-
 
 
 /**
