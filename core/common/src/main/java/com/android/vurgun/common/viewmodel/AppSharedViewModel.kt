@@ -49,9 +49,10 @@ class AppSharedViewModel @Inject constructor() : ViewModel() {
         _bettingSlipState.value = BettingSlipState()
     }
 
-    fun isSelected(eventId: String, betType: String): Boolean {
-        val bet = _bettingSlipState.value.selectedBets[eventId]
-        return bet?.betType == betType
+
+    private fun checkBetAmountIsEnough(betAmount: Double): Boolean {
+        val currentState = _bettingSlipState.value
+        return currentState.totalOdds * betAmount <= balance
     }
 
     fun submitBet(betAmount: Double): SubmittedBet {

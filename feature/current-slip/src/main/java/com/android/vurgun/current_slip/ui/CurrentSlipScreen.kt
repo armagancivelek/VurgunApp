@@ -1,13 +1,14 @@
 package com.android.vurgun.current_slip.ui
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.android.vurgun.common_ui.R
 import com.android.vurgun.common_ui.component.LoadingView
 import com.android.vurgun.common_ui.component.SnackBarType
 import com.android.vurgun.common_ui.theme.LocalAppSharedViewModel
@@ -34,6 +35,7 @@ fun CurrentSlipScreen(
                         requestedSnackBarDuration = SnackbarDuration.Long,
                     )
                 }
+
                 is CurrentSlipContract.Event.ShowSuccess -> {
                     appSnackBarViewModel.showSnackBar(
                         message = event.message,
@@ -45,17 +47,22 @@ fun CurrentSlipScreen(
         }
     }
 
-    if (state.isLoading) {
-        LoadingView()
-    } else {
-        CurrentSlipScreenContent(
-            bettingSlipState = bettingSlipState,
-            onRemoveBet = { eventId -> appSharedViewModel.removeBet(eventId) },
-            onClearAllBets = { appSharedViewModel.clearAllBets() },
-            onSubmitBet = { betAmount ->
+
+    CurrentSlipScreenContent(
+        bettingSlipState = bettingSlipState,
+        onRemoveBet = { eventId -> appSharedViewModel.removeBet(eventId) },
+        onClearAllBets = { appSharedViewModel.clearAllBets() },
+        onSubmitBet = { betAmount ->
+            if (viewModel.checkBalanceIsEnough(appSharedViewModel.balance, betAmount)) {
                 appSharedViewModel.submitBet(betAmount)
                 viewModel.showBetSubmittedSuccess()
-            },
-        )
-    }
+            }
+        },
+    )
+    AnimatedVisibility(
+        visible = state.isLoading,
+        enter = fadeIn(),
+        exit = fadeOut(),
+    ) { LoadingView() }
+
 }
