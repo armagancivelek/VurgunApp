@@ -104,12 +104,7 @@ class AppState(
 
             when (topLevelDestination) {
                 TopLevelDestination.HOME -> {
-                    val currentRoute = navController.currentBackStackEntry?.destination?.route
-                    if (currentRoute?.contains(AppRoute.SportEventsRoute::class.simpleName.orEmpty()) == true) {
-                        navController.popBackStack()
-                    } else {
-                        navController.navigateToHome(topLevelNavOptions)
-                    }
+                    navController.navigateToHome(topLevelNavOptions)
                 }
                 TopLevelDestination.SLIP -> {
                     navController.navigateToSlips(topLevelNavOptions)

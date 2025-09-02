@@ -48,6 +48,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -119,7 +120,7 @@ fun VurgunApp(
                             .padding(horizontal = 10.dp, vertical = 5.dp)
                     ) {
                         Text(
-                            text = "Bakiye : 500,75 TL",
+                            text = "Bakiye: ${String.format("%.2f", appSharedViewModel.balance)} TL" ,
                             color = Color.White,
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Medium
@@ -158,7 +159,9 @@ fun VurgunApp(
                                 text = String.format("%.2f", bettingSlipState.totalOdds),
                                 color = WhiteColor,
                                 fontSize = 18.sp,
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Bold,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
                             )
                         }
                     }
@@ -191,7 +194,9 @@ fun VurgunApp(
                                 text = String.format("%.2f", bettingSlipState.totalOdds),
                                 color = Color.Black,
                                 fontSize = 18.sp,
-                                fontWeight = FontWeight.Bold
+                                fontWeight = FontWeight.Bold,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
                             )
                         }
                     }
@@ -204,9 +209,10 @@ fun VurgunApp(
             appState.currentTopLevelDestination?.let { currentDestination ->
                 BottomAppBar(
                     modifier = Modifier.shadow(
-                        elevation = 32.dp,
+                        elevation = 8.dp,
                     ),
                     containerColor = MaterialTheme.colorScheme.onPrimary,
+                    tonalElevation = 8.dp,
                 ) {
                     BottomNavigationBar(
                         modifier = Modifier.padding(bottom = 8.dp),

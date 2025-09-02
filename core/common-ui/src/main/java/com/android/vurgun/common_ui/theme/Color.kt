@@ -48,6 +48,7 @@ val AlertWarningColor = Color(0xFFDAA745)
 val AlertInformationColor = Color(0xFF3280C8)
 val AlertSuccessColor = Color(0xFF00C066)
 val AlertGrayColor = Color(0xFFA8A8A8)
+val RemoveColor = Color(0xFFFF5722)
 
 val surfaceContainerLowLight = Color(0xFFF5F3F3)
 

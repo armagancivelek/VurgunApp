@@ -32,7 +32,6 @@ import kotlinx.coroutines.flow.collectLatest
 @Composable
 fun HomeScreen(
     viewModel: HomeViewModel = hiltViewModel(),
-    onItemClick: (String?) -> Unit,
     onSportClick: (String) -> Unit = {},
 ) {
     val appSnackBarViewModel = LocalAppSnackBarViewModel.current
@@ -69,8 +68,6 @@ fun HomeScreen(
                         requestedSnackBarDuration = SnackbarDuration.Long,
                     )
                 }
-
-                is HomeScreenContract.Event.NavigateToPhotoDetail -> onItemClick.invoke(event.photoId)
                 is HomeScreenContract.Event.UpdateSearchQuery -> {}
                 is HomeScreenContract.Event.ToggleGroupExpansion -> {}
             }

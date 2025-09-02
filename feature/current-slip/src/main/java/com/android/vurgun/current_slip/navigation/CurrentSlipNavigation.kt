@@ -7,15 +7,11 @@ import androidx.navigation.compose.composable
 import com.android.vurgun.current_slip.ui.CurrentSlipScreen
 import com.android.vurgun.common.route.AppRoute
 
-fun NavController.navigateToCurrentSlip(navOptions: NavOptions) =
+fun NavController.navigateToCurrentSlip(navOptions: NavOptions?) =
     navigate(route = AppRoute.CurrentSlipRoute, navOptions)
 
-fun NavGraphBuilder.currentSlipsScreen(
-    onItemClick: (String) -> Unit
-) {
+fun NavGraphBuilder.currentSlipsScreen() {
     composable<AppRoute.CurrentSlipRoute> {
-        CurrentSlipScreen(
-            onItemClick = {}
-        )
+        CurrentSlipScreen()
     }
 }

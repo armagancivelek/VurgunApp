@@ -26,9 +26,5 @@ class SportEventsScreenContract {
             val errorMessage: String,
             val type: SnackBarType,
         ) : Event()
-
-        data class NavigateToEventDetail(
-            val eventId: String,
-        ) : Event()
     }
 }

@@ -19,9 +19,6 @@ class HomeScreenContract {
     ) : CoreState.ViewState
 
     sealed class Event : CoreState.Event {
-        data class NavigateToPhotoDetail(
-            val photoId: String?,
-        ) : Event()
 
         data class ShowError(
             @DrawableRes val iconRes: Int,

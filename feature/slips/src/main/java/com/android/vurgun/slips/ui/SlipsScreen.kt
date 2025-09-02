@@ -14,8 +14,7 @@ import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun SlipsScreen(
-    viewModel: SlipsViewModel = hiltViewModel(),
-    onItemClick: (String?) -> Unit,
+    viewModel: SlipsViewModel = hiltViewModel()
 ) {
     val appSnackBarViewModel = LocalAppSnackBarViewModel.current
     val state by viewModel.uiState.collectAsStateWithLifecycle()
@@ -37,8 +36,6 @@ fun SlipsScreen(
                         requestedSnackBarDuration = SnackbarDuration.Long,
                     )
                 }
-
-                is SlipsScreenContract.Event.NavigateToPhotoDetail -> TODO()
             }
         }
     }

@@ -27,7 +27,6 @@ import kotlinx.coroutines.flow.collectLatest
 @Composable
 fun SportEventsScreen(
     viewModel: SportEventsViewModel = hiltViewModel(),
-    onEventClick: (String) -> Unit,
 ) {
     val appSnackBarViewModel = LocalAppSnackBarViewModel.current
     val appSharedViewModel = LocalAppSharedViewModel.current
@@ -44,9 +43,6 @@ fun SportEventsScreen(
                         requestedSnackBarDuration = SnackbarDuration.Long,
                     )
                 }
-                is SportEventsScreenContract.Event.NavigateToEventDetail -> {
-                    onEventClick(event.eventId)
-                }
             }
         }
     }
@@ -61,19 +57,18 @@ fun SportEventsScreen(
             uiState = state,
             onSearchQueryChange = viewModel::updateSearchQuery,
             onEventClick = { event ->
-                onEventClick(event.id)
             },
             onSearchToggle = viewModel::toggleSearch,
             onOddsClick = { eventId, betType ->
                 val event = state.eventsUiModel.find { it.id == eventId } ?: return@SportEventsScreenContent
-                
+
                 val odds = when (betType) {
                     "home" -> event.bookmakers.firstOrNull()?.markets?.firstOrNull()?.outcomes?.find { it.name == event.homeTeam }?.price ?: 1.73
                     "draw" -> event.bookmakers.firstOrNull()?.markets?.firstOrNull()?.outcomes?.find { it.name == "Draw" }?.price ?: 1.90
                     "away" -> event.bookmakers.firstOrNull()?.markets?.firstOrNull()?.outcomes?.find { it.name == event.awayTeam }?.price ?: 1.25
                     else -> 1.0
                 }
-                
+
                 val selectedBet = SelectedBet(
                     eventId = eventId,
                     betType = betType,
@@ -81,13 +76,13 @@ fun SportEventsScreen(
                     homeTeam = event.homeTeam,
                     awayTeam = event.awayTeam
                 )
-                
+
                 appSharedViewModel.toggleBet(selectedBet)
             },
             selectedBets = bettingSlipState.selectedBets.mapValues { it.value.betType }
         )
     }
-    
+
     AnimatedVisibility(
         visible = state.isLoading,
         enter = fadeIn(),

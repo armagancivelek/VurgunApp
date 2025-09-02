@@ -7,15 +7,11 @@ import androidx.navigation.compose.composable
 import com.android.vurgun.slips.ui.SlipsScreen
 import com.android.vurgun.common.route.AppRoute
 
-fun NavController.navigateToSlips(navOptions: NavOptions) =
+fun NavController.navigateToSlips(navOptions: NavOptions?) =
     navigate(route = AppRoute.SlipsRoute, navOptions)
 
-fun NavGraphBuilder.slipsScreen(
-    onItemClick: (String) -> Unit,
-) {
+fun NavGraphBuilder.slipsScreen() {
     composable<AppRoute.SlipsRoute> {
-        SlipsScreen(
-            onItemClick = {}
-        )
+        SlipsScreen()
     }
 }

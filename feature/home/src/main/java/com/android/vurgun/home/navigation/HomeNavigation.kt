@@ -18,7 +18,6 @@ fun NavController.navigateToSportEvents(sportKey: String, navOptions: NavOptions
     navigate(route = AppRoute.SportEventsRoute(sportKey), navOptions)
 
 fun NavGraphBuilder.homeScreen(
-    onItemClick: (String?) -> Unit,
     onNavigateToSportEvents: (String) -> Unit,
 ) {
 
@@ -27,7 +26,6 @@ fun NavGraphBuilder.homeScreen(
         exitTransition = { fadeOut(animationSpec = tween(1000)) },
     ) {
         HomeScreen(
-            onItemClick = onItemClick,
             onSportClick = onNavigateToSportEvents,
         )
     }
@@ -36,8 +34,6 @@ fun NavGraphBuilder.homeScreen(
         enterTransition = { fadeIn(animationSpec = tween(1000)) },
         exitTransition = { fadeOut(animationSpec = tween(1000)) },
     ) {
-        SportEventsScreen(
-            onEventClick = onItemClick,
-            )
+        SportEventsScreen()
     }
 }
