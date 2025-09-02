@@ -4,7 +4,7 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.runtime.ProvidableCompositionLocal
 import androidx.compose.runtime.compositionLocalOf
 import com.android.vurgun.common_ui.screen.snackbar.AppSnackBarViewModel
-import com.android.vurgun.common_ui.viewmodel.AppSharedViewModel
+import com.android.vurgun.common.viewmodel.AppSharedViewModel
 import kotlinx.coroutines.flow.StateFlow
 
 val LocalAppSnackBarViewModel: ProvidableCompositionLocal<AppSnackBarViewModel> = provideCompositionLocal()

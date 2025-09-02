@@ -2,7 +2,7 @@ package com.android.vurgun.domain.mapper
 
 import com.android.vurgun.domain.model.SportUiModel
 import com.android.vurgun.domain.model.SportGroupUiModel
-import com.android.vurgun.home_api.model.Sport
+import com.android.vurgun.request.Sport
 
 fun Sport.toUiModel(): SportUiModel {
     return SportUiModel(

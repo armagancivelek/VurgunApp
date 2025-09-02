@@ -28,6 +28,4 @@ abstract class CoreViewModel<STATE : CoreState.ViewState, EVENT : CoreState.Even
     fun sendEvent(event: EVENT) {
         viewModelScope.launch { _event.emit(event) }
     }
-
-    open fun retry() {}
 }

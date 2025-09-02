@@ -10,7 +10,6 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
@@ -20,13 +19,9 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.android.vurgun.common_ui.component.LoadingView
 import com.android.vurgun.common_ui.component.SnackBarType
 import com.android.vurgun.common_ui.theme.LocalAppSnackBarViewModel
-import com.android.vurgun.common_ui.theme.LocalContentShimmerTheme
 import com.android.vurgun.home.HomeScreenContract
 import com.android.vurgun.home.HomeViewModel
-import com.android.vurgun.home.common.LocalHomeContentShimmer
 import com.android.vurgun.home.ui.component.HomeScreenContent
-import com.valentinilk.shimmer.ShimmerBounds
-import com.valentinilk.shimmer.rememberShimmer
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
@@ -65,28 +60,23 @@ fun HomeScreen(
                         requestedSnackBarDuration = SnackbarDuration.Long,
                     )
                 }
+
                 is HomeScreenContract.Event.UpdateSearchQuery -> {}
                 is HomeScreenContract.Event.ToggleGroupExpansion -> {}
             }
         }
     }
 
-    CompositionLocalProvider(
-        LocalHomeContentShimmer provides rememberShimmer(
-            shimmerBounds = ShimmerBounds.Window,
-            theme = LocalContentShimmerTheme.current,
-        ),
-    ) {
 
-        HomeScreenContent(
-            uiState = state,
-            onSearchQueryChange = viewModel::updateSearchQuery,
-            onToggleGroupExpansion = viewModel::toggleGroupExpansion,
-            onSportClick = { sport ->
-                onSportClick(sport.key)
-            },
-        )
-    }
+    HomeScreenContent(
+        uiState = state,
+        onSearchQueryChange = viewModel::updateSearchQuery,
+        onToggleGroupExpansion = viewModel::toggleGroupExpansion,
+        onSportClick = { sport ->
+            onSportClick(sport.key)
+        },
+    )
+
     AnimatedVisibility(
         visible = state.isLoading,
         enter = fadeIn(),

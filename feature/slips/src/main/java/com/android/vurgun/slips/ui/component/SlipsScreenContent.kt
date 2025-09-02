@@ -44,8 +44,8 @@ import com.android.vurgun.common_ui.theme.BlueColor
 import com.android.vurgun.common_ui.theme.CardBackgroundColor
 import com.android.vurgun.common_ui.theme.WhiteColor
 import com.android.vurgun.common_ui.util.getBetTypeDisplayName
-import com.android.vurgun.common_ui.viewmodel.SelectedBet
-import com.android.vurgun.common_ui.viewmodel.SubmittedBet
+import com.android.vurgun.common.model.SelectedBet
+import com.android.vurgun.common.model.SubmittedBet
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale

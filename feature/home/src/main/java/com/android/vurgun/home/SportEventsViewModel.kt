@@ -16,7 +16,6 @@ import javax.inject.Inject
 @HiltViewModel
 class SportEventsViewModel @Inject constructor(
     private val savedStateHandle: SavedStateHandle,
-    private val networkConnectivityManager: NetworkConnectivityManager,
     private val getOddsUseCase: GetOddsUseCase,
 ) : CoreViewModel<SportEventsScreenContract.UiState, SportEventsScreenContract.Event>(
     initialState = SportEventsScreenContract.UiState(
@@ -27,25 +26,8 @@ class SportEventsViewModel @Inject constructor(
     private val sportKey: String = savedStateHandle.get<String>("sportKey") ?: ""
 
     init {
-        //    observeNetworkConnectivity()
         if (sportKey.isNotEmpty()) {
             getEvents()
-        }
-    }
-
-    private fun observeNetworkConnectivity() {
-        viewModelScope.launch {
-            networkConnectivityManager.getConnectivityStatusFlow()
-                .collectLatest { status ->
-                    when (status) {
-                        is NetworkConnectivityManager.ConnectivityStatus.Connected -> {
-                            retry()
-                        }
-                        is NetworkConnectivityManager.ConnectivityStatus.Disconnected -> {
-                            // Handle disconnection
-                        }
-                    }
-                }
         }
     }
 
@@ -142,9 +124,4 @@ class SportEventsViewModel @Inject constructor(
         )
     }
 
-    override fun retry() {
-        if (sportKey.isNotEmpty()) {
-            getEvents()
-        }
-    }
 }

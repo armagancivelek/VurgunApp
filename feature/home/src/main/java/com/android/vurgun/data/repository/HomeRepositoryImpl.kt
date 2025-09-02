@@ -3,9 +3,8 @@ package com.android.vurgun.data.repository
 import com.android.vurgun.domain.remote.RemoteDataSourceExecutor
 import com.android.vurgun.domain.repository.HomeRepository
 import com.android.vurgun.home_api.HomeApiService
-import com.android.vurgun.home_api.model.OddsResponse
-import com.android.vurgun.home_api.model.ScoresResponse
-import com.android.vurgun.home_api.model.Sport
+import com.android.vurgun.response.OddsResponse
+import com.android.vurgun.request.Sport
 import javax.inject.Inject
 
 class HomeRepositoryImpl @Inject constructor(
@@ -36,17 +35,4 @@ class HomeRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getScores(
-        sport: String,
-        daysFrom: Int,
-        dateFormat: String,
-    ): List<ScoresResponse> {
-        return remoteDataSourceExecutor.execute {
-            homeApiService.getScores(
-                sport = sport,
-                daysFrom = daysFrom,
-                dateFormat = dateFormat,
-            )
-        }
-    }
 }

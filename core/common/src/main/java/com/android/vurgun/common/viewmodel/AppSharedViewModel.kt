@@ -1,35 +1,14 @@
-package com.android.vurgun.common_ui.viewmodel
+package com.android.vurgun.common.viewmodel
 
 import androidx.lifecycle.ViewModel
+import com.android.vurgun.common.model.BettingSlipState
+import com.android.vurgun.common.model.SelectedBet
+import com.android.vurgun.common.model.SubmittedBet
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 import kotlin.random.Random
-
-data class SelectedBet(
-    val eventId: String,
-    val betType: String,
-    val odds: Double,
-    val homeTeam: String,
-    val awayTeam: String,
-)
-
-data class SubmittedBet(
-    val id: String,
-    val bets: List<SelectedBet>,
-    val betAmount: Double,
-    val totalOdds: Double,
-    val maxWin: Double,
-    val submittedAt: Long = System.currentTimeMillis(),
-)
-
-data class BettingSlipState(
-    val selectedBets: Map<String, SelectedBet> = emptyMap(),
-) {
-    val totalMatches: Int get() = selectedBets.size
-    val totalOdds: Double get() = if (selectedBets.isEmpty()) 0.0 else selectedBets.values.fold(1.0) { acc, bet -> acc * bet.odds }
-}
 
 class AppSharedViewModel @Inject constructor() : ViewModel() {
 

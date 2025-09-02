@@ -1,4 +1,4 @@
-package com.android.vurgun.home_api.model
+package com.android.vurgun.response
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

@@ -17,5 +17,10 @@ class CurrentSlipContract {
             val errorMessage: String,
             val type: SnackBarType,
         ) : Event()
+
+        data class ShowSuccess(
+            val message: String,
+            val type: SnackBarType = SnackBarType.Success,
+        ) : Event()
     }
 }

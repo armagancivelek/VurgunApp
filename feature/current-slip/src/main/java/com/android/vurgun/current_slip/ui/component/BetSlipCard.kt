@@ -29,7 +29,7 @@ import com.android.vurgun.common_ui.theme.RemoveColor
 import com.android.vurgun.common_ui.theme.TealColor
 import com.android.vurgun.common_ui.theme.WhiteColor
 import com.android.vurgun.common_ui.theme.YellowColor
-import com.android.vurgun.common_ui.viewmodel.SelectedBet
+import com.android.vurgun.common.model.SelectedBet
 
 @Composable
 fun BetSlipCard(

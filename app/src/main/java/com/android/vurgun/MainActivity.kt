@@ -23,7 +23,7 @@ import com.android.vurgun.common_ui.theme.LocalAppSnackBarHostState
 import com.android.vurgun.common_ui.theme.LocalAppSnackBarViewModel
 import com.android.vurgun.common_ui.theme.LocalAppSharedViewModel
 import com.android.vurgun.common_ui.theme.LocalNetworkStatusFlow
-import com.android.vurgun.common_ui.viewmodel.AppSharedViewModel
+import com.android.vurgun.common.viewmodel.AppSharedViewModel
 import com.android.vurgun.ui.VurgunApp
 import com.android.vurgun.ui.state.rememberAppState
 import dagger.hilt.android.AndroidEntryPoint

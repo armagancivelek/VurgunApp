@@ -4,8 +4,10 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.android.vurgun.common_ui.R
 import com.android.vurgun.common_ui.component.LoadingView
 import com.android.vurgun.common_ui.component.SnackBarType
 import com.android.vurgun.common_ui.theme.LocalAppSharedViewModel
@@ -32,7 +34,13 @@ fun CurrentSlipScreen(
                         requestedSnackBarDuration = SnackbarDuration.Long,
                     )
                 }
-                else -> {}
+                is CurrentSlipContract.Event.ShowSuccess -> {
+                    appSnackBarViewModel.showSnackBar(
+                        message = event.message,
+                        requestedSnackBarType = SnackBarType.Success,
+                        requestedSnackBarDuration = SnackbarDuration.Long,
+                    )
+                }
             }
         }
     }
@@ -46,11 +54,7 @@ fun CurrentSlipScreen(
             onClearAllBets = { appSharedViewModel.clearAllBets() },
             onSubmitBet = { betAmount ->
                 appSharedViewModel.submitBet(betAmount)
-                appSnackBarViewModel.showSnackBar(
-                    message = "Kuponunuz başarıyla oynanmıştır!",
-                    requestedSnackBarType = SnackBarType.Success,
-                    requestedSnackBarDuration = SnackbarDuration.Long,
-                )
+                viewModel.showBetSubmittedSuccess()
             },
         )
     }

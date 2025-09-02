@@ -48,8 +48,8 @@ import com.android.vurgun.common_ui.theme.GreenColor
 import com.android.vurgun.common_ui.theme.RemoveColor
 import com.android.vurgun.common_ui.theme.WhiteColor
 import com.android.vurgun.common_ui.util.getBetTypeDisplayName
-import com.android.vurgun.common_ui.viewmodel.BettingSlipState
-import com.android.vurgun.common_ui.viewmodel.SelectedBet
+import com.android.vurgun.common.model.BettingSlipState
+import com.android.vurgun.common.model.SelectedBet
 import com.android.vurgun.common_ui.R as R_common_ui
 
 @Composable

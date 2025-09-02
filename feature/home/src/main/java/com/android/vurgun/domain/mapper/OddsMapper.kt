@@ -4,10 +4,10 @@ import com.android.vurgun.domain.model.BookmakerUiModel
 import com.android.vurgun.domain.model.MarketUiModel
 import com.android.vurgun.domain.model.OddsUiModel
 import com.android.vurgun.domain.model.OutcomeUiModel
-import com.android.vurgun.home_api.model.Bookmaker
-import com.android.vurgun.home_api.model.Market
-import com.android.vurgun.home_api.model.OddsResponse
-import com.android.vurgun.home_api.model.Outcome
+import com.android.vurgun.response.Bookmaker
+import com.android.vurgun.response.Market
+import com.android.vurgun.response.OddsResponse
+import com.android.vurgun.response.Outcome
 
 fun OddsResponse.toUiModel(): OddsUiModel {
     return OddsUiModel(
