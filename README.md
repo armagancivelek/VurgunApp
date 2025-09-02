@@ -54,7 +54,7 @@ Uygulama Clean Architecture prensiplerine dayanan modüler bir yapıya sahiptir:
 - **Detekt** - Statik kod analizi
 - **Git Hooks** - Pre-commit kontrolleri
 
-- Convention Plugins (Build Logic)
+### Convention Plugins (Build Logic)
 
 Proje genelinde ortak Gradle yapılandırmalarını yönetmek için build-logic modülü kullanılmıştır. Bu sayede:
 
