@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "805913184813",
+    "project_id": "vurgunapp-b02b3",
+    "storage_bucket": "vurgunapp-b02b3.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:805913184813:android:fff7f6091b1b1a41c386a4",
+        "android_client_info": {
+          "package_name": "com.android.vurgun"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALUvB0fNykZjkwFoLKXCG2Cpy8cMnRVtw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
