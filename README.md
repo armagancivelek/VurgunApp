@@ -54,6 +54,36 @@ Uygulama Clean Architecture prensiplerine dayanan modüler bir yapıya sahiptir:
 - **Detekt** - Statik kod analizi
 - **Git Hooks** - Pre-commit kontrolleri
 
+- Convention Plugins (Build Logic)
+
+Proje genelinde ortak Gradle yapılandırmalarını yönetmek için build-logic modülü kullanılmıştır. Bu sayede:
+
+Ortak bağımlılıklar merkezi olarak yönetilir
+
+Tüm modüllerde aynı Gradle ayarları ve pluginler uygulanır
+
+Kod tekrarı azaltılır ve build süreleri optimize edilir
+
+Örnek kullanım:
+
+// app/build.gradle.kts
+plugins {
+    id("vurgun.android.application")
+    id("vurgun.android.application.compose")
+    id("vurgun.android.hilt")
+}
+
+
+build-logic içinde:
+
+android-convention.gradle.kts → Android uygulama/library ortak ayarları
+
+compose-convention.gradle.kts → Compose yapılandırmaları
+
+hilt-convention.gradle.kts → Hilt DI setup
+
+Yeni bir modül eklediğinde sadece ilgili plugin’i uygulamak yeterlidir.
+
 ### Kod formatını kontrol et:
 ```bash
 ./gradlew ktlintCheck
