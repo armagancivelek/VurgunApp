@@ -18,5 +18,6 @@
     <string name="place_bet">Hemen Oyna</string>
     <string name="bet_max_win_label">Tahmini Kazanç</string>
     <string name="empty_betting_slip">Kuponunuz Boş</string>
+    <string name="bet_submitted_success">Kuponunuz başarıyla oynanmıştır!</string>
 
 </resources>

@@ -19,6 +19,7 @@
     <string name="clear_all_bets">Hepsini Sil</string>
     <string name="place_bet">Hemen Oyna</string>
     <string name="empty_betting_slip">Kuponunuz Boş</string>
+    <string name="bet_submitted_success">Kuponunuz başarıyla oynanmıştır!</string>
 
 
 </resources>

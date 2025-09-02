@@ -55,7 +55,7 @@ internal fun CurrentSlipScreenContent(
     bettingSlipState: BettingSlipState,
     onRemoveBet: (String) -> Unit,
     onClearAllBets: () -> Unit,
-    onSubmitBet: () -> Unit,
+    onSubmitBet: (Double) -> Unit,
 ) {
     var betAmount by remember { mutableStateOf("") }
 
@@ -147,8 +147,15 @@ internal fun CurrentSlipScreenContent(
                     }
 
                     Button(
-                        onClick = onSubmitBet,
+                        onClick = {
+                            val amount = betAmount.toDoubleOrNull() ?: 0.0
+                            if (amount > 0 && bettingSlipState.selectedBets.isNotEmpty()) {
+                                onSubmitBet(amount)
+                                betAmount = ""
+                            }
+                        },
                         modifier = Modifier.weight(1f),
+                        enabled = betAmount.toDoubleOrNull() != null && betAmount.toDoubleOrNull()!! > 0 && bettingSlipState.selectedBets.isNotEmpty(),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color(0xFF4CAF50)
                         )
@@ -331,7 +338,7 @@ private fun CurrentSlipScreenContentPreview() {
             ),
             onRemoveBet = {},
             onClearAllBets = {},
-            onSubmitBet = {}
+            onSubmitBet = { _ -> }
         )
     }
 }

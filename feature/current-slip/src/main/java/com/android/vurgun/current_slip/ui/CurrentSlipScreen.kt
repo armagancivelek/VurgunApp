@@ -44,8 +44,13 @@ fun CurrentSlipScreen(
             bettingSlipState = bettingSlipState,
             onRemoveBet = { eventId -> appSharedViewModel.removeBet(eventId) },
             onClearAllBets = { appSharedViewModel.clearAllBets() },
-            onSubmitBet = {
-
+            onSubmitBet = { betAmount ->
+                appSharedViewModel.submitBet(betAmount)
+                appSnackBarViewModel.showSnackBar(
+                    message = "Kuponunuz başarıyla oynanmıştır!",
+                    requestedSnackBarType = SnackBarType.Success,
+                    requestedSnackBarDuration = SnackbarDuration.Long
+                )
             }
         )
     }
