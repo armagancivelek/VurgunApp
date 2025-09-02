@@ -1,5 +1,6 @@
 package com.android.vurgun.current_slip.ui.component
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -52,6 +53,7 @@ import com.android.vurgun.common.model.BettingSlipState
 import com.android.vurgun.common.model.SelectedBet
 import com.android.vurgun.common_ui.R as R_common_ui
 
+@SuppressLint("DefaultLocale")
 @Composable
 internal fun CurrentSlipScreenContent(
     bettingSlipState: BettingSlipState,
@@ -86,9 +88,9 @@ internal fun CurrentSlipScreenContent(
 
                 OutlinedTextField(
                     value = betAmount,
-                    onValueChange = {
-                        if (betAmount.length < 5) {
-                            betAmount = it.filter { char -> char.isDigit() }
+                    onValueChange = { newValue ->
+                        if (newValue.length <= 5) {
+                            betAmount = newValue.filter { char -> char.isDigit() }
                         }
                     },
                     modifier = Modifier.fillMaxWidth(),
@@ -97,7 +99,6 @@ internal fun CurrentSlipScreenContent(
                         focusedBorderColor = BlueColor,
                         unfocusedBorderColor = Color.Gray,
                     ),
-                    maxLines = 1,
                     keyboardOptions = KeyboardOptions.Default.copy(
                         imeAction = androidx.compose.ui.text.input.ImeAction.Done,
                         keyboardType = androidx.compose.ui.text.input.KeyboardType.Number,
@@ -117,7 +118,7 @@ internal fun CurrentSlipScreenContent(
                         modifier = Modifier.padding(bottom = 8.dp),
                     )
                     Text(
-                        text = "$maxWin",
+                        text = String.format("%.2f", maxWin),
                         fontSize = 16.sp,
                         color = Color.Black,
                         fontWeight = FontWeight.Bold,
