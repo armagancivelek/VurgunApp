@@ -1,19 +1,19 @@
 package com.android.vurgun.home
 
 import androidx.lifecycle.viewModelScope
+import com.android.vurgun.analytics.FirebaseEventTracker
 import com.android.vurgun.common.core.CoreViewModel
 import com.android.vurgun.common_ui.R
 import com.android.vurgun.common_ui.component.SnackBarType
 import com.android.vurgun.domain.usecase.GetSportsUseCase
-import com.android.vurgun.network.common.NetworkConnectivityManager
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
     private val getSportsUseCase: GetSportsUseCase,
+    private val firebaseEventTracker: FirebaseEventTracker,
 ) : CoreViewModel<HomeScreenContract.UiState, HomeScreenContract.Event>(
     initialState = HomeScreenContract.UiState(
         isLoading = false,
@@ -95,6 +95,14 @@ class HomeViewModel @Inject constructor(
                 filteredSportGroup = updatedFilteredGroups,
             )
         }
+    }
+
+    fun sendSportEventDetail(sportKey: String) {
+        firebaseEventTracker.sportDetails(
+            params = mapOf(
+                "sport_key" to sportKey,
+            ),
+        )
     }
 
     private fun handleApiError(exception: Throwable) {

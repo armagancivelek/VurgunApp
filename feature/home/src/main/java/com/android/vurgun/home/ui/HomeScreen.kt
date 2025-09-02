@@ -73,6 +73,7 @@ fun HomeScreen(
         onSearchQueryChange = viewModel::updateSearchQuery,
         onToggleGroupExpansion = viewModel::toggleGroupExpansion,
         onSportClick = { sport ->
+            viewModel.sendSportEventDetail(sport.group)
             onSportClick(sport.key)
         },
     )

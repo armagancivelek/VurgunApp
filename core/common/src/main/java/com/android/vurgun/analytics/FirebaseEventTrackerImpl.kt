@@ -22,7 +22,7 @@ class FirebaseEventTrackerImpl @Inject constructor() : FirebaseEventTracker {
         firebaseAnalytics.logEvent(FirebaseAnalytics.Event.REMOVE_FROM_CART, params.toBundle())
     }
 
-    override fun matchDetails(params: Map<String, Any>) {
+    override fun sportDetails(params: Map<String, Any>) {
         firebaseAnalytics.logEvent(MATCH_DETAILS_EVENT, params.toBundle())
     }
 }
