@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 class DataStoreHelperImpl @Inject constructor(
     private val dataStore: DataStore<Preferences>,
-    private val encryptionHelper: EncryptionHelper
+    private val encryptionHelper: EncryptionHelper,
 ) : DataStoreHelper {
 
     override fun <T> getPreference(key: Preferences.Key<T>, defaultValue: T?): Flow<T?> {

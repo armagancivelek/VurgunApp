@@ -22,11 +22,11 @@ internal fun HomeScreenContent(
     onSportClick: (SportUiModel) -> Unit = {},
 ) {
     Column(
-        modifier = Modifier.fillMaxSize()
+        modifier = Modifier.fillMaxSize(),
     ) {
         SearchBar(
             searchQuery = uiState.searchQuery,
-            onSearchQueryChange = onSearchQueryChange
+            onSearchQueryChange = onSearchQueryChange,
         )
 
         LazyVerticalGrid(
@@ -34,7 +34,7 @@ internal fun HomeScreenContent(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp)
+            contentPadding = androidx.compose.foundation.layout.PaddingValues(16.dp),
         ) {
             uiState.filteredSportGroup.forEach { sportGroup ->
                 item(span = { androidx.compose.foundation.lazy.grid.GridItemSpan(2) }) {
@@ -43,7 +43,7 @@ internal fun HomeScreenContent(
                         isExpanded = sportGroup.isExpanded,
                         onToggle = {
                             onToggleGroupExpansion(sportGroup.groupName)
-                        }
+                        },
                     )
                 }
 
@@ -51,7 +51,7 @@ internal fun HomeScreenContent(
                     items(sportGroup.sports) { sport ->
                         SportCard(
                             sport = sport,
-                            onClick = onSportClick
+                            onClick = onSportClick,
                         )
                     }
                 }
@@ -70,7 +70,7 @@ private fun HomeScreenContentWithDataPreview() {
             title = "NBA",
             description = "National Basketball Association",
             active = true,
-            hasOutrights = true
+            hasOutrights = true,
         ),
         SportUiModel(
             key = "football_nfl",
@@ -78,21 +78,21 @@ private fun HomeScreenContentWithDataPreview() {
             title = "NFL",
             description = "National Football League",
             active = true,
-            hasOutrights = false
-        )
+            hasOutrights = false,
+        ),
     )
 
     val sampleGroups = listOf(
         SportGroupUiModel(
             groupName = "Basketball",
             sports = listOf(sampleSports[0]),
-            isExpanded = true
+            isExpanded = true,
         ),
         SportGroupUiModel(
             groupName = "Football",
             sports = listOf(sampleSports[1]),
-            isExpanded = false
-        )
+            isExpanded = false,
+        ),
     )
 
     HomeScreenContent(
@@ -100,10 +100,10 @@ private fun HomeScreenContentWithDataPreview() {
             isLoading = false,
             sportGroupUiModel = sampleGroups,
             filteredSportGroup = sampleGroups,
-            searchQuery = ""
+            searchQuery = "",
         ),
         onSearchQueryChange = {},
         onToggleGroupExpansion = {},
-        onSportClick = {}
+        onSportClick = {},
     )
 }

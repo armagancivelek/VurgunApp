@@ -49,10 +49,14 @@ val AlertInformationColor = Color(0xFF3280C8)
 val AlertSuccessColor = Color(0xFF00C066)
 val AlertGrayColor = Color(0xFFA8A8A8)
 val RemoveColor = Color(0xFFFF5722)
+val GreenColor = Color(0xFF4CAF50)
+val YellowColor = Color(0xFFE6B800)
+val TealColor = Color(0xFF4A90A4)
+val BackgroundGrayColor = Color(0xFFF5F5F5)
+val CardBackgroundColor = Color(0xFFF8F9FA)
 
 val surfaceContainerLowLight = Color(0xFFF5F3F3)
 
-
 val ColorScheme.shareButtonColor
     @Composable
-    get() = if(isSystemInDarkTheme()) Color(0xFFDADADA) else Color(0xFFDADADA)
+    get() = if (isSystemInDarkTheme()) Color(0xFFDADADA) else Color(0xFFDADADA)

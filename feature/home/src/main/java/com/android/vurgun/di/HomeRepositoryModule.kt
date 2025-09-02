@@ -13,5 +13,4 @@ interface HomeRepositoryModule {
 
     @Binds
     fun bindHomeRepository(impl: HomeRepositoryImpl): HomeRepository
-
 }

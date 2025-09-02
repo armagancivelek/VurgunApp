@@ -10,9 +10,9 @@ indent_size = 4
 indent_style = space
 
 [*.{kt, kts}]
-ij_json_keep_trailing_comma = false
-ij_kotlin_allow_trailing_comma = false
-ij_kotlin_allow_trailing_comma_on_call_site = false
+ij_json_keep_trailing_comma = true
+ij_kotlin_allow_trailing_comma = true
+ij_kotlin_allow_trailing_comma_on_call_site = true
 ij_kotlin_code_style_defaults = KOTLIN_OFFICIAL
 insert_final_newline = false
 ktlint_standard_package-name = disabled

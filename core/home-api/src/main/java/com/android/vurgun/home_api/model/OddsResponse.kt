@@ -18,7 +18,7 @@ data class OddsResponse(
     @SerialName("away_team")
     val awayTeam: String,
     @SerialName("bookmakers")
-    val bookmakers: List<Bookmaker>
+    val bookmakers: List<Bookmaker>,
 )
 
 @Serializable
@@ -30,7 +30,7 @@ data class Bookmaker(
     @SerialName("last_update")
     val lastUpdate: String,
     @SerialName("markets")
-    val markets: List<Market>
+    val markets: List<Market>,
 )
 
 @Serializable
@@ -40,7 +40,7 @@ data class Market(
     @SerialName("last_update")
     val lastUpdate: String,
     @SerialName("outcomes")
-    val outcomes: List<Outcome>
+    val outcomes: List<Outcome>,
 )
 
 @Serializable
@@ -50,5 +50,5 @@ data class Outcome(
     @SerialName("price")
     val price: Double,
     @SerialName("point")
-    val point: Double? = null
+    val point: Double? = null,
 )

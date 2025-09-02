@@ -11,7 +11,7 @@ fun Sport.toUiModel(): SportUiModel {
         title = title,
         description = description,
         active = active,
-        hasOutrights = hasOutrights
+        hasOutrights = hasOutrights,
     )
 }
 
@@ -21,7 +21,7 @@ fun List<Sport>.toGroupedUiModel(): List<SportGroupUiModel> {
         .map { (group, sportsList) ->
             SportGroupUiModel(
                 groupName = group,
-                sports = sportsList
+                sports = sportsList,
             )
         }
 }

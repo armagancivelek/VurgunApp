@@ -6,7 +6,6 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
-
 @Module
 @InstallIn(SingletonComponent::class)
 object BuildConfigModule {
@@ -14,6 +13,6 @@ object BuildConfigModule {
     @Provides
     @Singleton
     fun provideBuildConfigProvider(
-        impl: BuildConfigProviderImpl
+        impl: BuildConfigProviderImpl,
     ): BuildConfigProvider = impl
 }

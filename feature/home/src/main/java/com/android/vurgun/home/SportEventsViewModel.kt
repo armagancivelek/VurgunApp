@@ -27,7 +27,7 @@ class SportEventsViewModel @Inject constructor(
     private val sportKey: String = savedStateHandle.get<String>("sportKey") ?: ""
 
     init {
-    //    observeNetworkConnectivity()
+        //    observeNetworkConnectivity()
         if (sportKey.isNotEmpty()) {
             getEvents()
         }
@@ -57,7 +57,7 @@ class SportEventsViewModel @Inject constructor(
                     regions = "us,uk,eu",
                     markets = "h2h",
                     dateFormat = "iso",
-                    oddsFormat = "decimal"
+                    oddsFormat = "decimal",
                 ),
                 onStart = {
                     updateState { it.copy(isLoading = true) }
@@ -67,7 +67,7 @@ class SportEventsViewModel @Inject constructor(
                 },
                 onFailure = { exception ->
                     handleApiError(exception)
-                }
+                },
             )
         }
     }
@@ -79,15 +79,15 @@ class SportEventsViewModel @Inject constructor(
         } else {
             currentEvents.filter { event ->
                 event.homeTeam.contains(query, ignoreCase = true) ||
-                event.awayTeam.contains(query, ignoreCase = true) ||
-                event.sportTitle.contains(query, ignoreCase = true)
+                    event.awayTeam.contains(query, ignoreCase = true) ||
+                    event.sportTitle.contains(query, ignoreCase = true)
             }
         }
 
         updateState {
             it.copy(
                 searchQuery = query,
-                filteredEventsUiModel = filteredEvents
+                filteredEventsUiModel = filteredEvents,
             )
         }
     }
@@ -96,7 +96,7 @@ class SportEventsViewModel @Inject constructor(
         updateState {
             it.copy(
                 isSearchVisible = !it.isSearchVisible,
-                searchQuery = if (!it.isSearchVisible) "" else it.searchQuery
+                searchQuery = if (!it.isSearchVisible) "" else it.searchQuery,
             )
         }
         if (!uiState.value.isSearchVisible) {
@@ -113,7 +113,7 @@ class SportEventsViewModel @Inject constructor(
                     } else {
                         put(eventId, betType)
                     }
-                }
+                },
             )
         }
     }
@@ -126,7 +126,7 @@ class SportEventsViewModel @Inject constructor(
                 eventsUiModel = events,
                 filteredEventsUiModel = events,
                 sportKey = sportKey,
-                sportTitle = sportTitle
+                sportTitle = sportTitle,
             )
         }
     }
@@ -137,8 +137,8 @@ class SportEventsViewModel @Inject constructor(
             SportEventsScreenContract.Event.ShowError(
                 iconRes = R.drawable.ic_error,
                 errorMessage = exception.message.orEmpty(),
-                type = SnackBarType.Error
-            )
+                type = SnackBarType.Error,
+            ),
         )
     }
 

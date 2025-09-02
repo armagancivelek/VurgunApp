@@ -8,7 +8,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.android.vurgun.common_ui.component.LoadingView
 import com.android.vurgun.common_ui.component.SnackBarType
@@ -19,16 +18,12 @@ import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun SlipsScreen(
-    viewModel: SlipsViewModel = hiltViewModel()
+    viewModel: SlipsViewModel = hiltViewModel(),
 ) {
     val appSnackBarViewModel = LocalAppSnackBarViewModel.current
     val appSharedViewModel = LocalAppSharedViewModel.current
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val submittedBets by appSharedViewModel.submittedBets.collectAsStateWithLifecycle()
-
-
-
-
 
     LaunchedEffect(viewModel.event) {
         viewModel.event.collectLatest { event ->
@@ -44,11 +39,11 @@ fun SlipsScreen(
         }
     }
     SlipsScreenContent(
-        submittedBets = submittedBets
+        submittedBets = submittedBets,
     )
     AnimatedVisibility(
         visible = state.isLoading,
         enter = fadeIn(),
-        exit = fadeOut()
+        exit = fadeOut(),
     ) { LoadingView() }
 }

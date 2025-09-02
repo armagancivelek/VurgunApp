@@ -17,7 +17,7 @@ fun OddsResponse.toUiModel(): OddsUiModel {
         commenceTime = commenceTime,
         homeTeam = homeTeam,
         awayTeam = awayTeam,
-        bookmakers = bookmakers.map { it.toUiModel() }
+        bookmakers = bookmakers.map { it.toUiModel() },
     )
 }
 
@@ -30,7 +30,7 @@ fun Bookmaker.toUiModel(): BookmakerUiModel {
         key = key,
         title = title,
         lastUpdate = lastUpdate,
-        markets = markets.map { it.toUiModel() }
+        markets = markets.map { it.toUiModel() },
     )
 }
 
@@ -38,7 +38,7 @@ fun Market.toUiModel(): MarketUiModel {
     return MarketUiModel(
         key = key,
         lastUpdate = lastUpdate,
-        outcomes = outcomes.map { it.toUiModel() }
+        outcomes = outcomes.map { it.toUiModel() },
     )
 }
 
@@ -46,6 +46,6 @@ fun Outcome.toUiModel(): OutcomeUiModel {
     return OutcomeUiModel(
         name = name,
         price = price,
-        point = point
+        point = point,
     )
 }

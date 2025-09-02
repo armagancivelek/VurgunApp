@@ -2,7 +2,6 @@ package com.android.vurgun
 
 import androidx.lifecycle.viewModelScope
 import com.android.vurgun.common.core.CoreViewModel
-import com.android.vurgun.data.data.DataStoreRepository
 import com.android.vurgun.network.common.NetworkConnectivityManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -10,7 +9,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(private val dataStoreRepository: DataStoreRepository, val networkConnectivityManager: NetworkConnectivityManager) : CoreViewModel<MainContract.State, MainContract.Event>(
+class MainViewModel @Inject constructor(val networkConnectivityManager: NetworkConnectivityManager) : CoreViewModel<MainContract.State, MainContract.Event>(
     initialState = MainContract.State(
         isLoading = false,
     ),
@@ -21,5 +20,4 @@ class MainViewModel @Inject constructor(private val dataStoreRepository: DataSto
             updateState { it.copy(keepSplashScreenOn = false) }
         }
     }
-
 }

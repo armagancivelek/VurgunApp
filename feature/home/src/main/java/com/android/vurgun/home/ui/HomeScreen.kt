@@ -38,13 +38,10 @@ fun HomeScreen(
     val state by viewModel.uiState.collectAsStateWithLifecycle()
     val context = LocalContext.current
 
-
     val permissionLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.RequestPermission(),
         onResult = { },
     )
-
-
 
     LaunchedEffect(Unit) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -87,14 +84,12 @@ fun HomeScreen(
             onToggleGroupExpansion = viewModel::toggleGroupExpansion,
             onSportClick = { sport ->
                 onSportClick(sport.key)
-            }
+            },
         )
-
     }
     AnimatedVisibility(
         visible = state.isLoading,
         enter = fadeIn(),
-        exit = fadeOut()
+        exit = fadeOut(),
     ) { LoadingView() }
 }
-

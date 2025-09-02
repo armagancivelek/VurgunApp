@@ -22,7 +22,7 @@ data class ScoresResponse(
     @SerialName("scores")
     val scores: List<TeamScore>? = null,
     @SerialName("last_update")
-    val lastUpdate: String? = null
+    val lastUpdate: String? = null,
 )
 
 @Serializable
@@ -30,5 +30,5 @@ data class TeamScore(
     @SerialName("name")
     val name: String,
     @SerialName("score")
-    val score: String
+    val score: String,
 )

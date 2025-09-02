@@ -9,5 +9,5 @@ import kotlinx.serialization.Serializable
 data class NetworkErrorResponse(
     val details_url: String?,
     val error_code: String?,
-    val message: String?
+    val message: String?,
 )

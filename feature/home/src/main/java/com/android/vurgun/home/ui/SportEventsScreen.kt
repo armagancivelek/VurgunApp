@@ -74,18 +74,18 @@ fun SportEventsScreen(
                     betType = betType,
                     odds = odds,
                     homeTeam = event.homeTeam,
-                    awayTeam = event.awayTeam
+                    awayTeam = event.awayTeam,
                 )
 
                 appSharedViewModel.toggleBet(selectedBet)
             },
-            selectedBets = bettingSlipState.selectedBets.mapValues { it.value.betType }
+            selectedBets = bettingSlipState.selectedBets.mapValues { it.value.betType },
         )
     }
 
     AnimatedVisibility(
         visible = state.isLoading,
         enter = fadeIn(),
-        exit = fadeOut()
+        exit = fadeOut(),
     ) { LoadingView() }
 }

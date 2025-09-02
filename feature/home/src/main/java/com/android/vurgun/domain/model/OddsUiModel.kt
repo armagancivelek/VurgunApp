@@ -7,24 +7,24 @@ data class OddsUiModel(
     val commenceTime: String,
     val homeTeam: String,
     val awayTeam: String,
-    val bookmakers: List<BookmakerUiModel>
+    val bookmakers: List<BookmakerUiModel>,
 )
 
 data class BookmakerUiModel(
     val key: String,
     val title: String,
     val lastUpdate: String,
-    val markets: List<MarketUiModel>
+    val markets: List<MarketUiModel>,
 )
 
 data class MarketUiModel(
     val key: String,
     val lastUpdate: String,
-    val outcomes: List<OutcomeUiModel>
+    val outcomes: List<OutcomeUiModel>,
 )
 
 data class OutcomeUiModel(
     val name: String,
     val price: Double,
-    val point: Double? = null
+    val point: Double? = null,
 )

@@ -19,7 +19,7 @@ class GetOddsUseCase @Inject constructor(
             regions = input.regions,
             markets = input.markets,
             oddsFormat = input.oddsFormat,
-            dateFormat = input.dateFormat
+            dateFormat = input.dateFormat,
         ).toOddsUiModel()
     }
 
@@ -28,6 +28,6 @@ class GetOddsUseCase @Inject constructor(
         val regions: String = "us,uk,eu",
         val markets: String = "h2h",
         val oddsFormat: String = "decimal",
-        val dateFormat: String = "iso"
+        val dateFormat: String = "iso",
     )
 }

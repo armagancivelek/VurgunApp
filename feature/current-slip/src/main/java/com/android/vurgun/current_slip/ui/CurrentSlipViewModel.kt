@@ -5,13 +5,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class CurrentSlipViewModel @Inject constructor(
-
-) : CoreViewModel<CurrentSlipContract.UiState, CurrentSlipContract.Event>(
+class CurrentSlipViewModel @Inject constructor() : CoreViewModel<CurrentSlipContract.UiState, CurrentSlipContract.Event>(
     initialState = CurrentSlipContract.UiState(
         isLoading = false,
     ),
-) {
-
-
-}
+)

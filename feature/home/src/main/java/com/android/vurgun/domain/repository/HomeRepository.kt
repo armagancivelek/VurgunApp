@@ -11,12 +11,11 @@ interface HomeRepository {
         regions: String = "us,uk,eu",
         markets: String = "h2h",
         oddsFormat: String = "decimal",
-        dateFormat: String = "iso"
+        dateFormat: String = "iso",
     ): List<OddsResponse>
     suspend fun getScores(
         sport: String,
         daysFrom: Int = 3,
-        dateFormat: String = "iso"
+        dateFormat: String = "iso",
     ): List<ScoresResponse>
-
 }

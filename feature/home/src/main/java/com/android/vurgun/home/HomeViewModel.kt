@@ -38,13 +38,11 @@ class HomeViewModel @Inject constructor(
                         }
 
                         is NetworkConnectivityManager.ConnectivityStatus.Disconnected -> {
-
                         }
                     }
                 }
         }
     }
-
 
     private fun getScores() {
         viewModelScope.launch {
@@ -52,7 +50,7 @@ class HomeViewModel @Inject constructor(
                 input = GetScoresUseCase.Params(
                     sport = "basketball_nba",
                     daysFrom = 3,
-                    dateFormat = "iso"
+                    dateFormat = "iso",
                 ),
                 onStart = {
                     updateState { it.copy(isLoading = true) }
@@ -61,13 +59,13 @@ class HomeViewModel @Inject constructor(
                     updateState {
                         it.copy(
                             isLoading = false,
-                            scoresUiModel = scores
+                            scoresUiModel = scores,
                         )
                     }
                 },
                 onFailure = { exception ->
                     handleApiError(exception)
-                }
+                },
             )
         }
     }
@@ -84,13 +82,13 @@ class HomeViewModel @Inject constructor(
                         it.copy(
                             isLoading = false,
                             sportGroupUiModel = groupedSports,
-                            filteredSportGroup = groupedSports
+                            filteredSportGroup = groupedSports,
                         )
                     }
                 },
                 onFailure = { exception ->
                     handleApiError(exception)
-                }
+                },
             )
         }
     }
@@ -115,7 +113,7 @@ class HomeViewModel @Inject constructor(
         updateState {
             it.copy(
                 searchQuery = query,
-                filteredSportGroup = filteredGroups
+                filteredSportGroup = filteredGroups,
             )
         }
     }
@@ -140,11 +138,10 @@ class HomeViewModel @Inject constructor(
         updateState {
             it.copy(
                 sportGroupUiModel = updatedSportGroups,
-                filteredSportGroup = updatedFilteredGroups
+                filteredSportGroup = updatedFilteredGroups,
             )
         }
     }
-
 
     override fun retry() {
         getSports()
@@ -156,10 +153,8 @@ class HomeViewModel @Inject constructor(
             HomeScreenContract.Event.ShowError(
                 iconRes = R.drawable.ic_error,
                 errorMessage = exception.message.orEmpty(),
-                type = SnackBarType.Error
-            )
+                type = SnackBarType.Error,
+            ),
         )
     }
-
-
 }

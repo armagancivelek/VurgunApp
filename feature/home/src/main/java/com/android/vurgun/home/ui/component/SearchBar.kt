@@ -24,7 +24,7 @@ fun SearchBar(
     searchQuery: String,
     onSearchQueryChange: (String) -> Unit,
     modifier: Modifier = Modifier,
-    placeholder: String = ""
+    placeholder: String = "",
 ) {
     OutlinedTextField(
         value = searchQuery,
@@ -36,25 +36,25 @@ fun SearchBar(
             Text(
                 text = if (placeholder.isNotEmpty()) placeholder else stringResource(R.string.search_sports_placeholder),
                 style = MaterialTheme.typography.bodyMedium,
-                color = MaterialTheme.colorScheme.onSurfaceVariant
+                color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         },
         leadingIcon = {
             Icon(
                 imageVector = Icons.Default.Search,
                 contentDescription = "Search",
-                tint = MaterialTheme.colorScheme.onSurfaceVariant
+                tint = MaterialTheme.colorScheme.onSurfaceVariant,
             )
         },
         trailingIcon = {
             if (searchQuery.isNotEmpty()) {
                 IconButton(
-                    onClick = { onSearchQueryChange("") }
+                    onClick = { onSearchQueryChange("") },
                 ) {
                     Icon(
                         imageVector = Icons.Default.Clear,
                         contentDescription = "Clear search",
-                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                        tint = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
             }
@@ -63,8 +63,8 @@ fun SearchBar(
         singleLine = true,
         colors = OutlinedTextFieldDefaults.colors(
             unfocusedBorderColor = MaterialTheme.colorScheme.outline,
-            focusedBorderColor = MaterialTheme.colorScheme.outline
-        )
+            focusedBorderColor = MaterialTheme.colorScheme.outline,
+        ),
     )
 }
 
@@ -74,7 +74,7 @@ private fun SearchBarPreview() {
     SearchBar(
         searchQuery = "",
         onSearchQueryChange = {},
-        placeholder = "Search sports..."
+        placeholder = "Search sports...",
     )
 }
 
@@ -84,6 +84,6 @@ private fun SearchBarWithTextPreview() {
     SearchBar(
         searchQuery = "basketball",
         onSearchQueryChange = {},
-        placeholder = "Search sports..."
+        placeholder = "Search sports...",
     )
 }

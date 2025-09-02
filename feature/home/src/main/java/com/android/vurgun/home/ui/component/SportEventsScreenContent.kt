@@ -38,7 +38,7 @@ internal fun SportEventsScreenContent(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(horizontal = 16.dp)
+            .padding(horizontal = 16.dp),
     ) {
         Spacer(modifier = Modifier.height(8.dp))
         if (uiState.isSearchVisible) {
@@ -46,18 +46,18 @@ internal fun SportEventsScreenContent(
                 modifier = Modifier
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 SearchBar(
                     searchQuery = uiState.searchQuery,
                     onSearchQueryChange = onSearchQueryChange,
                     modifier = Modifier.weight(1f),
-                    placeholder = stringResource(R.string.search_competition_placeholder)
+                    placeholder = stringResource(R.string.search_competition_placeholder),
                 )
                 IconButton(onClick = onSearchToggle) {
                     Icon(
                         imageVector = Icons.Filled.Search,
-                        contentDescription = "Search"
+                        contentDescription = "Search",
                     )
                 }
             }
@@ -66,16 +66,16 @@ internal fun SportEventsScreenContent(
                 modifier = Modifier
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = uiState.sportTitle.ifEmpty { "Sport Events" },
-                    style = MaterialTheme.typography.titleLarge
+                    style = MaterialTheme.typography.titleLarge,
                 )
                 IconButton(onClick = onSearchToggle) {
                     Icon(
                         imageVector = Icons.Filled.Search,
-                        contentDescription = "Search"
+                        contentDescription = "Search",
                     )
                 }
             }
@@ -86,14 +86,14 @@ internal fun SportEventsScreenContent(
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(8.dp),
-            contentPadding = androidx.compose.foundation.layout.PaddingValues(bottom = 20.dp)
+            contentPadding = androidx.compose.foundation.layout.PaddingValues(bottom = 20.dp),
         ) {
             items(uiState.filteredEventsUiModel) { event ->
                 EventCard(
                     event = event,
                     onClick = onEventClick,
                     selectedBetType = selectedBets[event.id],
-                    onOddsClick = onOddsClick
+                    onOddsClick = onOddsClick,
                 )
             }
         }
@@ -111,7 +111,7 @@ private fun SportEventsScreenContentPreview() {
             commenceTime = "2024-01-15T20:00:00Z",
             homeTeam = "Lakers",
             awayTeam = "Warriors",
-            bookmakers = emptyList()
+            bookmakers = emptyList(),
         ),
         OddsUiModel(
             id = "2",
@@ -120,8 +120,8 @@ private fun SportEventsScreenContentPreview() {
             commenceTime = "2024-01-15T22:00:00Z",
             homeTeam = "Celtics",
             awayTeam = "Heat",
-            bookmakers = emptyList()
-        )
+            bookmakers = emptyList(),
+        ),
     )
 
     SportEventsScreenContent(
@@ -130,11 +130,11 @@ private fun SportEventsScreenContentPreview() {
             eventsUiModel = sampleEvents,
             filteredEventsUiModel = sampleEvents,
             searchQuery = "",
-            sportKey = "basketball_nba"
+            sportKey = "basketball_nba",
         ),
         onSearchQueryChange = {},
         onEventClick = {},
         onSearchToggle = {},
-        onOddsClick = { _, _ -> }
+        onOddsClick = { _, _ -> },
     )
 }

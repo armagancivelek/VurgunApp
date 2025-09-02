@@ -58,7 +58,6 @@ object NetworkModule {
         return NetworkConnectivityManagerImpl(context)
     }
 
-
     @Provides
     @Singleton
     fun providerAuthInterceptor(provider: BuildConfigProvider): AuthInterceptor {
@@ -73,7 +72,7 @@ object NetworkModule {
     fun provideInternalDebugOkHttpClient(
         authInterceptor: AuthInterceptor,
         chuckerInterceptor: ChuckerInterceptor,
-        customLoggingInterceptor: LoggingInterceptor
+        customLoggingInterceptor: LoggingInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(CLIENT_TIME_OUT_SEC, TimeUnit.SECONDS)
@@ -110,12 +109,11 @@ object NetworkModule {
         return ChuckerInterceptor.Builder(context).collector(ChuckerCollector(context)).build()
     }
 
-
     @Provides
     @Singleton
     @PublicClient
     fun providePublicDebugOkHttpClient(
-        customLoggingInterceptor: LoggingInterceptor
+        customLoggingInterceptor: LoggingInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .connectTimeout(CLIENT_TIME_OUT_SEC, TimeUnit.SECONDS)
@@ -130,7 +128,7 @@ object NetworkModule {
     fun providePublicRetrofit(
         @PublicClient client: OkHttpClient,
         networkConfigManager: NetworkConfigManager,
-        json: Json
+        json: Json,
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(networkConfigManager.getDomainBaseUrl())
@@ -143,6 +141,4 @@ object NetworkModule {
             .callFactory { client.newCall(it) }
             .build()
     }
-
-
 }

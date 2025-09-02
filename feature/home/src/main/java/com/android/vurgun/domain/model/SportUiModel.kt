@@ -6,11 +6,11 @@ data class SportUiModel(
     val title: String,
     val description: String,
     val active: Boolean,
-    val hasOutrights: Boolean
+    val hasOutrights: Boolean,
 )
 
 data class SportGroupUiModel(
     val groupName: String,
     val sports: List<SportUiModel>,
-    val isExpanded: Boolean = true
+    val isExpanded: Boolean = true,
 )

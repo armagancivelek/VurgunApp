@@ -16,5 +16,5 @@ data class Sport(
     @SerialName("active")
     val active: Boolean,
     @SerialName("has_outrights")
-    val hasOutrights: Boolean
+    val hasOutrights: Boolean,
 )

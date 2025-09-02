@@ -9,10 +9,10 @@ data class ScoresUiModel(
     val homeTeam: String,
     val awayTeam: String,
     val scores: List<TeamScoreUiModel>? = null,
-    val lastUpdate: String? = null
+    val lastUpdate: String? = null,
 )
 
 data class TeamScoreUiModel(
     val name: String,
-    val score: String
+    val score: String,
 )

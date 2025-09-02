@@ -11,21 +11,19 @@ import javax.inject.Inject
 class HomeRepositoryImpl @Inject constructor(
     private val homeApiService: HomeApiService,
     private val remoteDataSourceExecutor: RemoteDataSourceExecutor,
-): HomeRepository {
+) : HomeRepository {
     override suspend fun getSports(all: Boolean): List<Sport> {
         return remoteDataSourceExecutor.execute {
             homeApiService.getSports(all = all)
         }
     }
 
-
-
     override suspend fun getOdds(
         sport: String,
         regions: String,
         markets: String,
         oddsFormat: String,
-        dateFormat: String
+        dateFormat: String,
     ): List<OddsResponse> {
         return remoteDataSourceExecutor.execute {
             homeApiService.getOdds(
@@ -33,7 +31,7 @@ class HomeRepositoryImpl @Inject constructor(
                 regions = regions,
                 markets = markets,
                 oddsFormat = oddsFormat,
-                dateFormat = dateFormat
+                dateFormat = dateFormat,
             )
         }
     }
@@ -41,15 +39,14 @@ class HomeRepositoryImpl @Inject constructor(
     override suspend fun getScores(
         sport: String,
         daysFrom: Int,
-        dateFormat: String
+        dateFormat: String,
     ): List<ScoresResponse> {
         return remoteDataSourceExecutor.execute {
             homeApiService.getScores(
                 sport = sport,
                 daysFrom = daysFrom,
-                dateFormat = dateFormat
+                dateFormat = dateFormat,
             )
         }
     }
-
 }

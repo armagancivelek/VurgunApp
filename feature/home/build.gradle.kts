@@ -16,8 +16,7 @@ dependencies {
     // compose shimmer library
     implementation(libs.compose.shimmer)
 
-
-    //Coil
+    // Coil
     implementation(libs.coil)
     implementation(libs.coil.okhttp)
 

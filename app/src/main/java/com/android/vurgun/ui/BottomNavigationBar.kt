@@ -42,7 +42,7 @@ fun BottomNavigationBar(
                     onClick = {},
                     colors = NavigationBarItemDefaults.colors().copy(
                         selectedIndicatorColor = Color.Transparent,
-                        selectedIconColor = Color.Transparent
+                        selectedIconColor = Color.Transparent,
                     ),
                 )
             } else {
@@ -53,7 +53,7 @@ fun BottomNavigationBar(
                     icon = {
                         Icon(
                             painter = painterResource(id = item.icon),
-                            contentDescription = stringResource(item.titleTextId)
+                            contentDescription = stringResource(item.titleTextId),
                         )
                     },
                     selected = selectedItem == item,
@@ -62,11 +62,10 @@ fun BottomNavigationBar(
                     },
                     colors = NavigationBarItemDefaults.colors().copy(
                         selectedIndicatorColor = BlueColor,
-                        selectedIconColor = Color.White
+                        selectedIconColor = Color.White,
                     ),
                 )
             }
-
         }
     }
 }

@@ -20,7 +20,7 @@ interface NetworkConnectivityManager {
 }
 
 class NetworkConnectivityManagerImpl(
-    context: Context
+    context: Context,
 ) : NetworkConnectivityManager {
 
     private val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

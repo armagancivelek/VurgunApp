@@ -22,7 +22,6 @@ dependencies {
     androidTestImplementation(libs.androidx.test.espresso.core)
 }
 
-
 dependencies {
 
     implementation(libs.androidx.core.ktx)

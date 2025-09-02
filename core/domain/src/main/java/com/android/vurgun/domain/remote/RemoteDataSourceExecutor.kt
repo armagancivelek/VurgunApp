@@ -1,6 +1,5 @@
 package com.android.vurgun.domain.remote
 
-
 import com.android.vurgun.di.AppDispatchers
 import com.android.vurgun.di.Dispatcher
 import com.android.vurgun.domain.exception.DomainErrorException

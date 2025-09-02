@@ -12,7 +12,7 @@ data class SelectedBet(
     val betType: String,
     val odds: Double,
     val homeTeam: String,
-    val awayTeam: String
+    val awayTeam: String,
 )
 
 data class SubmittedBet(
@@ -21,25 +21,24 @@ data class SubmittedBet(
     val betAmount: Double,
     val totalOdds: Double,
     val maxWin: Double,
-    val submittedAt: Long = System.currentTimeMillis()
+    val submittedAt: Long = System.currentTimeMillis(),
 )
 
 data class BettingSlipState(
-    val selectedBets: Map<String, SelectedBet> = emptyMap()
+    val selectedBets: Map<String, SelectedBet> = emptyMap(),
 ) {
     val totalMatches: Int get() = selectedBets.size
     val totalOdds: Double get() = if (selectedBets.isEmpty()) 0.0 else selectedBets.values.fold(1.0) { acc, bet -> acc * bet.odds }
 }
 
-
 class AppSharedViewModel @Inject constructor() : ViewModel() {
 
     private val _bettingSlipState = MutableStateFlow(BettingSlipState())
     val bettingSlipState: StateFlow<BettingSlipState> = _bettingSlipState.asStateFlow()
-    
+
     private val _submittedBets = MutableStateFlow<List<SubmittedBet>>(emptyList())
     val submittedBets: StateFlow<List<SubmittedBet>> = _submittedBets.asStateFlow()
-    
+
     val balance = Random.nextDouble(500.0, 1000.0)
 
     fun toggleBet(bet: SelectedBet) {
@@ -83,15 +82,15 @@ class AppSharedViewModel @Inject constructor() : ViewModel() {
             bets = currentState.selectedBets.values.toList(),
             betAmount = betAmount,
             totalOdds = currentState.totalOdds,
-            maxWin = currentState.totalOdds * betAmount
+            maxWin = currentState.totalOdds * betAmount,
         )
-        
+
         val currentSubmittedBets = _submittedBets.value.toMutableList()
         currentSubmittedBets.add(submittedBet)
         _submittedBets.value = currentSubmittedBets
-        
+
         clearAllBets()
-        
+
         return submittedBet
     }
 }

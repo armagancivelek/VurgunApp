@@ -22,7 +22,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.android.vurgun.common_ui.theme.TealColor
 import com.android.vurgun.common_ui.theme.WhiteColor
+import com.android.vurgun.common_ui.theme.YellowColor
 import com.android.vurgun.domain.model.OddsUiModel
 
 @Composable
@@ -31,7 +33,7 @@ fun EventCard(
     modifier: Modifier = Modifier,
     onClick: (OddsUiModel) -> Unit = {},
     onOddsClick: (String, String) -> Unit = { _, _ -> },
-    selectedBetType: String? = null
+    selectedBetType: String? = null,
 ) {
     Card(
         modifier = modifier
@@ -39,20 +41,20 @@ fun EventCard(
             .height(120.dp),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(
-            containerColor = WhiteColor
+            containerColor = WhiteColor,
         ),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(12.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp)
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = event.homeTeam,
@@ -61,7 +63,7 @@ fun EventCard(
                     color = MaterialTheme.colorScheme.onSurface,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
                 )
 
                 Text(
@@ -69,7 +71,7 @@ fun EventCard(
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(horizontal = 8.dp)
+                    modifier = Modifier.padding(horizontal = 8.dp),
                 )
 
                 Text(
@@ -80,40 +82,40 @@ fun EventCard(
                     textAlign = TextAlign.End,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
                 )
             }
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceEvenly
+                horizontalArrangement = Arrangement.SpaceEvenly,
             ) {
                 Text(
                     text = "MS 1",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
                 )
                 Text(
                     text = "MS X",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
                 )
                 Text(
                     text = "MS 2",
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.weight(1f)
+                    modifier = Modifier.weight(1f),
                 )
             }
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp)
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 val homeOdds = event.bookmakers.firstOrNull()?.markets?.firstOrNull()?.outcomes?.find { it.name == event.homeTeam }?.price ?: 0.0
                 val drawOdds = event.bookmakers.firstOrNull()?.markets?.firstOrNull()?.outcomes?.find { it.name == "Draw" }?.price ?: 0.0
@@ -123,14 +125,14 @@ fun EventCard(
                     onClick = { onOddsClick(event.id, "home") },
                     modifier = Modifier.weight(1f),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (selectedBetType == "home") Color(0xFFE6B800) else Color(0xFF4A90A4)
+                        containerColor = if (selectedBetType == "home") YellowColor else TealColor,
                     ),
-                    shape = RoundedCornerShape(20.dp)
+                    shape = RoundedCornerShape(20.dp),
                 ) {
                     Text(
                         text = if (homeOdds > 0) homeOdds.toString() else "1.73",
                         color = Color.White,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
                     )
                 }
 
@@ -138,14 +140,14 @@ fun EventCard(
                     onClick = { onOddsClick(event.id, "draw") },
                     modifier = Modifier.weight(1f),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (selectedBetType == "draw") Color(0xFFE6B800) else Color(0xFF4A90A4)
+                        containerColor = if (selectedBetType == "draw") YellowColor else TealColor,
                     ),
-                    shape = RoundedCornerShape(20.dp)
+                    shape = RoundedCornerShape(20.dp),
                 ) {
                     Text(
                         text = if (drawOdds > 0) drawOdds.toString() else "1.90",
                         color = Color.White,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
                     )
                 }
 
@@ -153,14 +155,14 @@ fun EventCard(
                     onClick = { onOddsClick(event.id, "away") },
                     modifier = Modifier.weight(1f),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = if (selectedBetType == "away") Color(0xFFE6B800) else Color(0xFF4A90A4)
+                        containerColor = if (selectedBetType == "away") YellowColor else TealColor,
                     ),
-                    shape = RoundedCornerShape(20.dp)
+                    shape = RoundedCornerShape(20.dp),
                 ) {
                     Text(
                         text = if (awayOdds > 0) awayOdds.toString() else "1.25",
                         color = Color.White,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
                     )
                 }
             }
@@ -179,7 +181,7 @@ private fun EventCardPreview() {
             commenceTime = "2024-01-15T20:00:00Z",
             homeTeam = "Galatasaray",
             awayTeam = "Çaykur Rizespor",
-            bookmakers = emptyList()
-        )
+            bookmakers = emptyList(),
+        ),
     )
 }

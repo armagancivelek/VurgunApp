@@ -33,9 +33,8 @@ fun rememberAppState(
     coroutineScope: CoroutineScope = rememberCoroutineScope(),
     navController: NavHostController = rememberNavController(),
     viewModel: MainViewModel = hiltViewModel(),
-    networkConnectivityManager: NetworkConnectivityManager
+    networkConnectivityManager: NetworkConnectivityManager,
 ): AppState {
-
 
     return remember(
         navController,
@@ -50,13 +49,12 @@ fun rememberAppState(
     }
 }
 
-
 @Stable
 class AppState(
     val navController: NavHostController,
     coroutineScope: CoroutineScope,
     val startDestination: AppRoute,
-    networkConnectivityManager: NetworkConnectivityManager
+    networkConnectivityManager: NetworkConnectivityManager,
 ) {
     private val previousDestination = mutableStateOf<NavDestination?>(null)
 
@@ -138,5 +136,4 @@ class AppState(
             started = SharingStarted.WhileSubscribed(5_000),
             initialValue = false,
         )
-
 }

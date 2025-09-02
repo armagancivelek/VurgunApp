@@ -1,7 +1,6 @@
 package com.android.vurgun.navigation
 
 import androidx.annotation.StringRes
-import com.android.vurgun.R
 import com.android.vurgun.common.route.AppRoute
 import com.android.vurgun.common_ui.icon.AppIcons
 import kotlin.reflect.KClass
@@ -41,7 +40,4 @@ enum class TopLevelDestination(
         titleTextId = R_common.feature_slip_title,
         route = AppRoute.SlipsRoute::class,
     ),
-
-
-
 }

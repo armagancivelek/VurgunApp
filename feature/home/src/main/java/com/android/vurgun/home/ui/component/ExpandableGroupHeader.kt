@@ -24,7 +24,7 @@ fun ExpandableGroupHeader(
     groupName: String,
     isExpanded: Boolean,
     onToggle: () -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
 ) {
     Row(
         modifier = modifier
@@ -32,23 +32,23 @@ fun ExpandableGroupHeader(
             .clickable { onToggle() }
             .padding(
                 horizontal = 4.dp,
-                vertical = 16.dp
+                vertical = 16.dp,
             ),
         horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
             text = groupName.uppercase(),
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.onSurface
+            color = MaterialTheme.colorScheme.onSurface,
         )
-        
+
         Icon(
             imageVector = if (isExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown,
             contentDescription = if (isExpanded) "Collapse" else "Expand",
             tint = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.size(24.dp)
+            modifier = Modifier.size(24.dp),
         )
     }
 }
@@ -59,7 +59,7 @@ private fun ExpandableGroupHeaderExpandedPreview() {
     ExpandableGroupHeader(
         groupName = "Basketball",
         isExpanded = true,
-        onToggle = {}
+        onToggle = {},
     )
 }
 
@@ -69,6 +69,6 @@ private fun ExpandableGroupHeaderCollapsedPreview() {
     ExpandableGroupHeader(
         groupName = "Football",
         isExpanded = false,
-        onToggle = {}
+        onToggle = {},
     )
 }

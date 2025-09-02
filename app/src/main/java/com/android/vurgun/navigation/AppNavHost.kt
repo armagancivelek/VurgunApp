@@ -30,7 +30,7 @@ fun AppNavHost(
         homeScreen(
             onNavigateToSportEvents = { sportKey ->
                 appState.navController.navigateToSportEvents(sportKey)
-            }
+            },
         )
 
         slipsScreen()

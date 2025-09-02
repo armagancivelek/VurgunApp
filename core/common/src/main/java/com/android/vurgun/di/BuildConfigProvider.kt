@@ -7,4 +7,3 @@ interface BuildConfigProvider {
     fun getVersionName(): String
     fun getApiKey(): String
 }
-

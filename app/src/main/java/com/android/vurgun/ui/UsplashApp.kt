@@ -85,27 +85,26 @@ fun VurgunApp(
         }
     }
 
-
     Scaffold(
         topBar = {
             TopAppBar(
                 title = {
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.Start
+                        horizontalArrangement = Arrangement.Start,
                     ) {
                         Text(
                             text = stringResource(id = R.string.app_name).uppercase(),
                             style = MaterialTheme.typography.headlineSmall,
                             fontWeight = FontWeight.ExtraBold,
-                            color = Color.White
+                            color = Color.White,
                         )
                         Image(
                             painter = painterResource(id = R.drawable.ic_splash),
                             contentDescription = "Logo",
                             modifier = Modifier
                                 .size(64.dp)
-                                .offset(x = -14.dp, y = -4.dp)
+                                .offset(x = -14.dp, y = -4.dp),
                         )
                     }
                 },
@@ -115,21 +114,21 @@ fun VurgunApp(
                             .padding(end = 8.dp)
                             .background(
                                 Color(0xFF4CAF50),
-                                RoundedCornerShape(16.dp)
+                                RoundedCornerShape(16.dp),
                             )
-                            .padding(horizontal = 10.dp, vertical = 5.dp)
+                            .padding(horizontal = 10.dp, vertical = 5.dp),
                     ) {
                         Text(
-                            text = "Bakiye: ${String.format("%.2f", appSharedViewModel.balance)} TL" ,
+                            text = "Bakiye: ${String.format("%.2f", appSharedViewModel.balance)} TL",
                             color = Color.White,
                             fontSize = 11.sp,
-                            fontWeight = FontWeight.Medium
+                            fontWeight = FontWeight.Medium,
                         )
                     }
                 },
                 colors = TopAppBarDefaults.topAppBarColors(
-                    containerColor = BlueColor
-                )
+                    containerColor = BlueColor,
+                ),
             )
         },
         floatingActionButtonPosition = FabPosition.Center,
@@ -144,16 +143,16 @@ fun VurgunApp(
                             .clickable {
                                 appState.navigateToTopLevelDestination(TopLevelDestination.CURRENT_SLIP)
                             },
-                        contentAlignment = Alignment.Center
+                        contentAlignment = Alignment.Center,
                     ) {
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center
+                            verticalArrangement = Arrangement.Center,
                         ) {
                             Text(
                                 text = "${bettingSlipState.totalMatches} Maç",
                                 color = WhiteColor,
-                                fontSize = 14.sp
+                                fontSize = 14.sp,
                             )
                             Text(
                                 text = String.format("%.2f", bettingSlipState.totalOdds),
@@ -161,7 +160,7 @@ fun VurgunApp(
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
                                 maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
+                                overflow = TextOverflow.Ellipsis,
                             )
                         }
                     }
@@ -173,22 +172,22 @@ fun VurgunApp(
                             .border(
                                 width = 2.dp,
                                 color = BlueColor,
-                                shape = CircleShape
+                                shape = CircleShape,
                             )
                             .background(Color.White, CircleShape)
                             .clickable {
                                 appState.navigateToTopLevelDestination(TopLevelDestination.CURRENT_SLIP)
                             },
-                        contentAlignment = Alignment.Center
+                        contentAlignment = Alignment.Center,
                     ) {
                         Column(
                             horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.Center
+                            verticalArrangement = Arrangement.Center,
                         ) {
                             Text(
                                 text = "${bettingSlipState.totalMatches} Maç",
                                 color = Color.Black,
-                                fontSize = 14.sp
+                                fontSize = 14.sp,
                             )
                             Text(
                                 text = String.format("%.2f", bettingSlipState.totalOdds),
@@ -196,14 +195,12 @@ fun VurgunApp(
                                 fontSize = 18.sp,
                                 fontWeight = FontWeight.Bold,
                                 maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
+                                overflow = TextOverflow.Ellipsis,
                             )
                         }
                     }
                 }
-
             }
-
         },
         bottomBar = {
             appState.currentTopLevelDestination?.let { currentDestination ->
@@ -220,7 +217,6 @@ fun VurgunApp(
                         navigationItems = appState.topLevelDestinations,
                         onClickedBottomNavItem = { selectedItem ->
                             appState.navigateToTopLevelDestination(selectedItem)
-
                         },
                     )
                 }

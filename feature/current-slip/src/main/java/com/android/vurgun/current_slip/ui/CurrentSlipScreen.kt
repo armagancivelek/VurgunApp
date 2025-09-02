@@ -49,9 +49,9 @@ fun CurrentSlipScreen(
                 appSnackBarViewModel.showSnackBar(
                     message = "Kuponunuz başarıyla oynanmıştır!",
                     requestedSnackBarType = SnackBarType.Success,
-                    requestedSnackBarDuration = SnackbarDuration.Long
+                    requestedSnackBarDuration = SnackbarDuration.Long,
                 )
-            }
+            },
         )
     }
 }

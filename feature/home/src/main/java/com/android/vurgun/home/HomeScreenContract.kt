@@ -27,12 +27,11 @@ class HomeScreenContract {
         ) : Event()
 
         data class UpdateSearchQuery(
-            val query: String
+            val query: String,
         ) : Event()
 
         data class ToggleGroupExpansion(
-            val groupName: String
+            val groupName: String,
         ) : Event()
     }
-
 }

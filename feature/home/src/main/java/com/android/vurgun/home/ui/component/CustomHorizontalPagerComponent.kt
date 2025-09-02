@@ -27,7 +27,7 @@ fun CustomHorizontalPagerComponent() {
     val originalList = listOf(
         com.android.vurgun.common_ui.R.drawable.ic_home_selected,
         com.android.vurgun.common_ui.R.drawable.ic_home_selected,
-        com.android.vurgun.common_ui.R.drawable.ic_home_selected
+        com.android.vurgun.common_ui.R.drawable.ic_home_selected,
     )
 
     val repeatedList = List(100) { index -> originalList[index % originalList.size] }
@@ -64,13 +64,13 @@ fun CustomHorizontalPagerComponent() {
                 .fillMaxWidth()
                 .aspectRatio(1.6f)
                 .clip(RoundedCornerShape(16.dp)),
-            shape = RoundedCornerShape(16.dp)
+            shape = RoundedCornerShape(16.dp),
         ) {
             Image(
                 painter = painterResource(id = repeatedList[page]),
                 contentDescription = "Page $page",
                 contentScale = ContentScale.Crop,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
             )
         }
     }

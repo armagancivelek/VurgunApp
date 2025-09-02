@@ -18,5 +18,4 @@ class CurrentSlipContract {
             val type: SnackBarType,
         ) : Event()
     }
-
 }

@@ -19,5 +19,13 @@
     <string name="bet_max_win_label">Tahmini Kazanç</string>
     <string name="empty_betting_slip">Kuponunuz Boş</string>
     <string name="bet_submitted_success">Kuponunuz başarıyla oynanmıştır!</string>
+    
+    <string name="no_bets_played_yet">Henüz kupon oynamadınız</string>
+    <string name="slip_number">Kupon #%s</string>
+    <string name="matches_label">%d Maç</string>
+    <string name="odds_label">Oran</string>
+    <string name="bet_amount_short">Kupon Bedeli</string>
+    <string name="max_win_short">Maks. kazanç</string>
+    <string name="played_date">Oynanma Tarihi: %s</string>
 
 </resources>

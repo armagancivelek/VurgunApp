@@ -42,7 +42,7 @@ object DataStoreModule {
     @Provides
     fun provideDataStoreHelper(
         @ApplicationContext context: Context,
-        encryptionHelper: EncryptionHelper
+        encryptionHelper: EncryptionHelper,
     ): DataStoreHelper {
         return DataStoreHelperImpl(context.dataStore, encryptionHelper)
     }
@@ -50,7 +50,7 @@ object DataStoreModule {
     @Provides
     @Singleton
     fun provideDataStoreRepository(
-        dataStoreHelper: DataStoreHelper
+        dataStoreHelper: DataStoreHelper,
     ): DataStoreRepository {
         return DataStoreRepositoryImpl(dataStoreHelper)
     }

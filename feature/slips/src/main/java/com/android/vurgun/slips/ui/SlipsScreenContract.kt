@@ -18,5 +18,4 @@ class SlipsScreenContract {
             val type: SnackBarType,
         ) : Event()
     }
-
 }

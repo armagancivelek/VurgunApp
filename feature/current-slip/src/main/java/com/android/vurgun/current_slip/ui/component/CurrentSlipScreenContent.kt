@@ -42,7 +42,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.android.vurgun.common_ui.R
 import com.android.vurgun.common_ui.theme.BaseAppTheme
+import com.android.vurgun.common_ui.theme.BackgroundGrayColor
 import com.android.vurgun.common_ui.theme.BlueColor
+import com.android.vurgun.common_ui.theme.GreenColor
 import com.android.vurgun.common_ui.theme.RemoveColor
 import com.android.vurgun.common_ui.theme.WhiteColor
 import com.android.vurgun.common_ui.util.getBetTypeDisplayName
@@ -70,16 +72,16 @@ internal fun CurrentSlipScreenContent(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(WhiteColor)
-            ) {
+                .background(WhiteColor),
+        ) {
             Column(
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(16.dp),
             ) {
                 Text(
                     text = stringResource(R.string.bet_amount_label),
                     fontSize = 14.sp,
                     color = Color.Black,
-                    modifier = Modifier.padding(bottom = 8.dp)
+                    modifier = Modifier.padding(bottom = 8.dp),
                 )
 
                 OutlinedTextField(
@@ -93,33 +95,33 @@ internal fun CurrentSlipScreenContent(
                     placeholder = { Text(stringResource(R.string.bet_amount_placeholder)) },
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = BlueColor,
-                        unfocusedBorderColor = Color.Gray
+                        unfocusedBorderColor = Color.Gray,
                     ),
                     maxLines = 1,
                     keyboardOptions = KeyboardOptions.Default.copy(
                         imeAction = androidx.compose.ui.text.input.ImeAction.Done,
-                        keyboardType = androidx.compose.ui.text.input.KeyboardType.Number
-                    )
+                        keyboardType = androidx.compose.ui.text.input.KeyboardType.Number,
+                    ),
                 )
 
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(top = 8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     Text(
                         text = stringResource(R.string.bet_max_win_label) + ":",
                         fontSize = 16.sp,
                         color = Color.Black,
-                        modifier = Modifier.padding(bottom = 8.dp)
+                        modifier = Modifier.padding(bottom = 8.dp),
                     )
                     Text(
                         text = "$maxWin",
                         fontSize = 16.sp,
                         color = Color.Black,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.padding(bottom = 8.dp)
+                        modifier = Modifier.padding(bottom = 8.dp),
                     )
                 }
 
@@ -127,7 +129,7 @@ internal fun CurrentSlipScreenContent(
 
                 Row(
                     modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     Button(
                         onClick = {
@@ -136,13 +138,13 @@ internal fun CurrentSlipScreenContent(
                         },
                         modifier = Modifier.weight(1f),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFFFF5722)
-                        )
+                            containerColor = RemoveColor,
+                        ),
                     ) {
                         Text(
                             text = stringResource(R.string.clear_all_bets),
                             color = Color.White,
-                            fontSize = 14.sp
+                            fontSize = 14.sp,
                         )
                     }
 
@@ -157,13 +159,13 @@ internal fun CurrentSlipScreenContent(
                         modifier = Modifier.weight(1f),
                         enabled = betAmount.toDoubleOrNull() != null && betAmount.toDoubleOrNull()!! > 0 && bettingSlipState.selectedBets.isNotEmpty(),
                         colors = ButtonDefaults.buttonColors(
-                            containerColor = Color(0xFF4CAF50)
-                        )
+                            containerColor = GreenColor,
+                        ),
                     ) {
                         Text(
                             text = stringResource(R.string.place_bet),
                             color = Color.White,
-                            fontSize = 14.sp
+                            fontSize = 14.sp,
                         )
                     }
                 }
@@ -173,24 +175,24 @@ internal fun CurrentSlipScreenContent(
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFF5F5F5))
-                .padding(start = 16.dp, end = 16.dp, top = 16.dp)
+                .background(BackgroundGrayColor)
+                .padding(start = 16.dp, end = 16.dp, top = 16.dp),
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
                     text = stringResource(R.string.current_slip_title),
                     fontSize = 18.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black
+                    color = Color.Black,
                 )
                 Text(
                     text = stringResource(R.string.match_count, bettingSlipState.totalMatches),
                     fontSize = 14.sp,
-                    color = Color.Gray
+                    color = Color.Gray,
                 )
             }
 
@@ -198,41 +200,38 @@ internal fun CurrentSlipScreenContent(
 
             if (bettingSlipState.selectedBets.values.isEmpty()) {
                 Box(Modifier.fillMaxSize()) {
-                        Column(
-                            modifier = Modifier.align(Alignment.Center),
-                            horizontalAlignment = Alignment.CenterHorizontally
-                        ) {
-                            Icon(
-                                painter = painterResource(id = R_common_ui.drawable.ic_warning),
-                                contentDescription = null,
-                                tint = Color.Black,
-                                modifier = Modifier.size(92.dp).align(Alignment.CenterHorizontally)
-                            )
-                            Text(
-                                text = stringResource(R.string.empty_betting_slip),
-                                fontSize = 14.sp,
-                                color = Color.Black,
-                                modifier = Modifier.align(Alignment.CenterHorizontally)
-                            )
-                        }
+                    Column(
+                        modifier = Modifier.align(Alignment.Center),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                    ) {
+                        Icon(
+                            painter = painterResource(id = R_common_ui.drawable.ic_warning),
+                            contentDescription = null,
+                            tint = Color.Black,
+                            modifier = Modifier.size(92.dp).align(Alignment.CenterHorizontally),
+                        )
+                        Text(
+                            text = stringResource(R.string.empty_betting_slip),
+                            fontSize = 14.sp,
+                            color = Color.Black,
+                            modifier = Modifier.align(Alignment.CenterHorizontally),
+                        )
+                    }
                 }
-
             } else {
                 LazyColumn(
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                     modifier = Modifier.weight(1f),
-                    contentPadding = PaddingValues(bottom = 16.dp)
+                    contentPadding = PaddingValues(bottom = 16.dp),
                 ) {
                     items(bettingSlipState.selectedBets.values.toList()) { bet ->
                         BetCard(
                             bet = bet,
-                            onRemove = { onRemoveBet(bet.eventId) }
+                            onRemove = { onRemoveBet(bet.eventId) },
                         )
                     }
                 }
             }
-
-
         }
     }
 }
@@ -240,53 +239,53 @@ internal fun CurrentSlipScreenContent(
 @Composable
 private fun BetCard(
     bet: SelectedBet,
-    onRemove: () -> Unit
+    onRemove: () -> Unit,
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(containerColor = Color.White),
-        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp)
+        elevation = CardDefaults.cardElevation(defaultElevation = 2.dp),
     ) {
         Column(
-            modifier = Modifier.padding(12.dp)
+            modifier = Modifier.padding(12.dp),
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.Top
+                verticalAlignment = Alignment.Top,
             ) {
                 Column(modifier = Modifier.weight(1f)) {
                     Text(
                         text = "${bet.homeTeam} - ${bet.awayTeam}",
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
-                        color = Color.Black
+                        color = Color.Black,
                     )
                     Text(
                         text = getBetTypeDisplayName(bet.betType),
                         fontSize = 12.sp,
                         color = Color.Gray,
-                        modifier = Modifier.padding(top = 4.dp)
+                        modifier = Modifier.padding(top = 4.dp),
                     )
                 }
 
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     Box(
                         modifier = Modifier
                             .background(
                                 BlueColor,
-                                RoundedCornerShape(4.dp)
+                                RoundedCornerShape(4.dp),
                             )
-                            .padding(horizontal = 8.dp, vertical = 4.dp)
+                            .padding(horizontal = 8.dp, vertical = 4.dp),
                     ) {
                         Text(
                             text = bet.odds.toString(),
                             color = Color.White,
                             fontSize = 12.sp,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
                         )
                     }
 
@@ -295,16 +294,16 @@ private fun BetCard(
                             .size(24.dp)
                             .background(
                                 color = RemoveColor,
-                                RoundedCornerShape(12.dp)
+                                RoundedCornerShape(12.dp),
                             )
                             .clickable { onRemove() },
-                        contentAlignment = Alignment.Center
+                        contentAlignment = Alignment.Center,
                     ) {
                         Text(
                             text = "×",
                             color = Color.White,
                             fontSize = 16.sp,
-                            fontWeight = FontWeight.Bold
+                            fontWeight = FontWeight.Bold,
                         )
                     }
                 }
@@ -325,20 +324,20 @@ private fun CurrentSlipScreenContentPreview() {
                         betType = "MS 1",
                         odds = 1.90,
                         homeTeam = "Galatasaray",
-                        awayTeam = "Çaykur Rizespor"
+                        awayTeam = "Çaykur Rizespor",
                     ),
                     "2" to SelectedBet(
                         eventId = "2",
                         betType = "MS 2",
                         odds = 1.25,
                         homeTeam = "Fenerbahçe",
-                        awayTeam = "Beşiktaş"
-                    )
-                )
+                        awayTeam = "Beşiktaş",
+                    ),
+                ),
             ),
             onRemoveBet = {},
             onClearAllBets = {},
-            onSubmitBet = { _ -> }
+            onSubmitBet = { _ -> },
         )
     }
 }

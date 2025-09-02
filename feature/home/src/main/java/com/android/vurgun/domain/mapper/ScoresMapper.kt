@@ -15,7 +15,7 @@ fun ScoresResponse.toUiModel(): ScoresUiModel {
         homeTeam = homeTeam,
         awayTeam = awayTeam,
         scores = scores?.map { it.toUiModel() },
-        lastUpdate = lastUpdate
+        lastUpdate = lastUpdate,
     )
 }
 
@@ -26,6 +26,6 @@ fun List<ScoresResponse>.toScoresUiModel(): List<ScoresUiModel> {
 fun TeamScore.toUiModel(): TeamScoreUiModel {
     return TeamScoreUiModel(
         name = name,
-        score = score
+        score = score,
     )
 }

@@ -32,13 +32,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.android.vurgun.common_ui.R
 import com.android.vurgun.common_ui.theme.BaseAppTheme
+import com.android.vurgun.common_ui.theme.BackgroundGrayColor
 import com.android.vurgun.common_ui.theme.BlueColor
+import com.android.vurgun.common_ui.theme.CardBackgroundColor
 import com.android.vurgun.common_ui.theme.WhiteColor
 import com.android.vurgun.common_ui.util.getBetTypeDisplayName
 import com.android.vurgun.common_ui.viewmodel.SelectedBet
@@ -49,40 +52,40 @@ import java.util.Locale
 
 @Composable
 internal fun SlipsScreenContent(
-    submittedBets: List<SubmittedBet>
+    submittedBets: List<SubmittedBet>,
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Color(0xFFF5F5F5))
-            .padding(16.dp)
+            .background(BackgroundGrayColor)
+            .padding(16.dp),
     ) {
         if (submittedBets.isEmpty()) {
             Box(
                 modifier = Modifier.fillMaxSize(),
-                contentAlignment = Alignment.Center
+                contentAlignment = Alignment.Center,
             ) {
                 Column(
-                    horizontalAlignment = Alignment.CenterHorizontally
+                    horizontalAlignment = Alignment.CenterHorizontally,
                 ) {
                     Icon(
                         painter = painterResource(id = R.drawable.ic_warning),
                         contentDescription = null,
                         tint = Color.Gray,
-                        modifier = Modifier.size(64.dp)
+                        modifier = Modifier.size(64.dp),
                     )
                     Spacer(modifier = Modifier.height(16.dp))
                     Text(
-                        text = "Henüz kupon oynamadınız",
+                        text = stringResource(R.string.no_bets_played_yet),
                         fontSize = 16.sp,
-                        color = Color.Gray
+                        color = Color.Gray,
                     )
                 }
             }
         } else {
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(12.dp),
-                contentPadding = PaddingValues(bottom = 16.dp)
+                contentPadding = PaddingValues(bottom = 16.dp),
             ) {
                 items(submittedBets.reversed()) { submittedBet ->
                     ExpandableSlipCard(submittedBet = submittedBet)
@@ -94,7 +97,7 @@ internal fun SlipsScreenContent(
 
 @Composable
 private fun ExpandableSlipCard(
-    submittedBet: SubmittedBet
+    submittedBet: SubmittedBet,
 ) {
     var isExpanded by remember { mutableStateOf(false) }
 
@@ -104,27 +107,27 @@ private fun ExpandableSlipCard(
             .clickable { isExpanded = !isExpanded },
         colors = CardDefaults.cardColors(containerColor = WhiteColor),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp),
-        shape = RoundedCornerShape(8.dp)
+        shape = RoundedCornerShape(8.dp),
     ) {
         Column(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier.padding(16.dp),
         ) {
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
+                verticalAlignment = Alignment.CenterVertically,
             ) {
                 Text(
-                    text = "Kupon #${submittedBet.id.takeLast(4)}",
+                    text = stringResource(R.string.slip_number, submittedBet.id.takeLast(4)),
                     fontSize = 16.sp,
                     fontWeight = FontWeight.Bold,
-                    color = Color.Black
+                    color = Color.Black,
                 )
 
                 Text(
                     text = if (isExpanded) "▲" else "▼",
                     fontSize = 12.sp,
-                    color = Color.Gray
+                    color = Color.Gray,
                 )
             }
 
@@ -132,22 +135,22 @@ private fun ExpandableSlipCard(
 
             Row(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween
+                horizontalArrangement = Arrangement.SpaceBetween,
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
                 ) {
                     Box(
                         modifier = Modifier
                             .background(BlueColor, RoundedCornerShape(4.dp))
-                            .padding(horizontal = 8.dp, vertical = 4.dp)
+                            .padding(horizontal = 8.dp, vertical = 4.dp),
                     ) {
                         Text(
-                            text = "${submittedBet.bets.size} Maç",
+                            text = stringResource(R.string.matches_label, submittedBet.bets.size),
                             color = WhiteColor,
                             fontSize = 12.sp,
-                            fontWeight = FontWeight.Medium
+                            fontWeight = FontWeight.Medium,
                         )
                     }
 
@@ -155,45 +158,45 @@ private fun ExpandableSlipCard(
                         text = String.format("%.2f", submittedBet.totalOdds),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black
+                        color = Color.Black,
                     )
 
                     Text(
-                        text = "Oran",
+                        text = stringResource(R.string.odds_label),
                         fontSize = 12.sp,
-                        color = Color.Gray
+                        color = Color.Gray,
                     )
                 }
 
                 Column(
-                    horizontalAlignment = Alignment.End
+                    horizontalAlignment = Alignment.End,
                 ) {
                     Text(
                         text = "${String.format("%.0f", submittedBet.betAmount)} TL",
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Medium,
-                        color = Color.Black
+                        color = Color.Black,
                     )
                     Text(
-                        text = "Kupon Bedeli",
+                        text = stringResource(R.string.bet_amount_short),
                         fontSize = 10.sp,
-                        color = Color.Gray
+                        color = Color.Gray,
                     )
                 }
 
                 Column(
-                    horizontalAlignment = Alignment.End
+                    horizontalAlignment = Alignment.End,
                 ) {
                     Text(
                         text = String.format("%.2f", submittedBet.maxWin),
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color.Black
+                        color = Color.Black,
                     )
                     Text(
-                        text = "Maks. kazanç",
+                        text = stringResource(R.string.max_win_short),
                         fontSize = 10.sp,
-                        color = Color.Gray
+                        color = Color.Gray,
                     )
                 }
             }
@@ -201,7 +204,7 @@ private fun ExpandableSlipCard(
             AnimatedVisibility(
                 visible = isExpanded,
                 enter = expandVertically(),
-                exit = shrinkVertically()
+                exit = shrinkVertically(),
             ) {
                 Column {
                     Spacer(modifier = Modifier.height(16.dp))
@@ -214,9 +217,9 @@ private fun ExpandableSlipCard(
                     Spacer(modifier = Modifier.height(8.dp))
 
                     Text(
-                        text = "Oynanma Tarihi: ${formatDate(submittedBet.submittedAt)}",
+                        text = stringResource(R.string.played_date, formatDate(submittedBet.submittedAt)),
                         fontSize = 12.sp,
-                        color = Color.Gray
+                        color = Color.Gray,
                     )
                 }
             }
@@ -226,46 +229,46 @@ private fun ExpandableSlipCard(
 
 @Composable
 private fun SubmittedBetCard(
-    bet: SelectedBet
+    bet: SelectedBet,
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFFF8F9FA)),
+        colors = CardDefaults.cardColors(containerColor = CardBackgroundColor),
         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp),
-        shape = RoundedCornerShape(6.dp)
+        shape = RoundedCornerShape(6.dp),
     ) {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(12.dp),
             horizontalArrangement = Arrangement.SpaceBetween,
-            verticalAlignment = Alignment.CenterVertically
+            verticalAlignment = Alignment.CenterVertically,
         ) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(
                     text = "${bet.homeTeam} - ${bet.awayTeam}",
                     fontSize = 14.sp,
                     fontWeight = FontWeight.Medium,
-                    color = Color.Black
+                    color = Color.Black,
                 )
                 Text(
                     text = getBetTypeDisplayName(bet.betType),
                     fontSize = 12.sp,
                     color = Color.Gray,
-                    modifier = Modifier.padding(top = 2.dp)
+                    modifier = Modifier.padding(top = 2.dp),
                 )
             }
 
             Box(
                 modifier = Modifier
                     .background(BlueColor, RoundedCornerShape(4.dp))
-                    .padding(horizontal = 8.dp, vertical = 4.dp)
+                    .padding(horizontal = 8.dp, vertical = 4.dp),
             ) {
                 Text(
                     text = bet.odds.toString(),
                     color = WhiteColor,
                     fontSize = 12.sp,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
                 )
             }
         }
@@ -291,21 +294,21 @@ private fun SlipsScreenContentPreview() {
                             betType = "MS 1",
                             odds = 1.90,
                             homeTeam = "Galatasaray",
-                            awayTeam = "Çaykur Rizespor"
+                            awayTeam = "Çaykur Rizespor",
                         ),
                         SelectedBet(
                             eventId = "2",
                             betType = "MS 2",
                             odds = 1.25,
                             homeTeam = "Fenerbahçe",
-                            awayTeam = "Beşiktaş"
-                        )
+                            awayTeam = "Beşiktaş",
+                        ),
                     ),
                     betAmount = 50.0,
                     totalOdds = 2.375,
-                    maxWin = 118.75
-                )
-            )
+                    maxWin = 118.75,
+                ),
+            ),
         )
     }
 }

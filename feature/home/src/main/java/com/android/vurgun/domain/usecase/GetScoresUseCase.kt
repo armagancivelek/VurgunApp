@@ -17,13 +17,13 @@ class GetScoresUseCase @Inject constructor(
         return repository.getScores(
             sport = input.sport,
             daysFrom = input.daysFrom,
-            dateFormat = input.dateFormat
+            dateFormat = input.dateFormat,
         ).toScoresUiModel()
     }
 
     data class Params(
         val sport: String,
         val daysFrom: Int = 3,
-        val dateFormat: String = "iso"
+        val dateFormat: String = "iso",
     )
 }
