@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="feature_home_title">Ana Sayfa</string>
+    <string name="feature_slip_title">Kuponlarım</string>
+    <string name="feature_current_slip_title">Kupon</string>
+    <string name="search_sports_placeholder">Spor ara...</string>
+    <string name="search_competition_placeholder">Maç ara</string>
+
+    <string name="bet_type_home_win">Ev Sahibi Kazanır</string>
+    <string name="bet_type_away_win">Deplasman Kazanır</string>
+    <string name="bet_type_draw">Berabere</string>
+
+    <string name="current_slip_title">Kuponun</string>
+    <string name="match_count">Maç Sayısı : %d</string>
+    <string name="bet_amount_label">Kupon Bedeli Giriniz</string>
+    <string name="bet_max_win_label">Tahmini Kazanç</string>
+    <string name="bet_amount_placeholder">Tutar giriniz</string>
+    <string name="clear_all_bets">Hepsini Sil</string>
+    <string name="place_bet">Hemen Oyna</string>
+    <string name="empty_betting_slip">Kuponunuz Boş</string>
+    <string name="bet_submitted_success">Kuponunuz başarıyla oynanmıştır!</string>
+
+    <string name="no_bets_played_yet">Henüz kupon oynamadınız</string>
+    <string name="slip_number">Kupon #%s</string>
+    <string name="matches_label">%d Maç</string>
+    <string name="odds_label">Oran</string>
+    <string name="bet_amount_short">Kupon Bedeli</string>
+    <string name="max_win_short">Maks. kazanç</string>
+    <string name="played_date">Oynanma Tarihi: %s</string>
+    <string name="insufficient_balance">"Bakiyeni yetersiz ! "</string>
+    <string name="no_sport_details_available">Spor detayları görüntülenemiyor</string>
+
+</resources>
