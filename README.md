@@ -66,13 +66,14 @@ Kod tekrarı azaltılır ve build süreleri optimize edilir
 
 Örnek kullanım:
 
+...
 // app/build.gradle.kts
 plugins {
     id("vurgun.android.application")
     id("vurgun.android.application.compose")
     id("vurgun.android.hilt")
 }
-
+...
 
 build-logic içinde:
 
