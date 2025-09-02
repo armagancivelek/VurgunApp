@@ -16,4 +16,8 @@ dependencies {
     testImplementation(libs.junit4)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.test.espresso.core)
+    // Firebase
+    val firebaseBom = platform(libs.firebase.bom)
+    implementation(firebaseBom)
+    implementation(libs.firebase.analytics)
 }

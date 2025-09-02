@@ -1,5 +1,6 @@
 package com.android.vurgun.current_slip.ui
 
+import com.android.vurgun.analytics.FirebaseEventTracker
 import com.android.vurgun.common.core.CoreViewModel
 import com.android.vurgun.common.stringprovider.StringProvider
 import com.android.vurgun.common_ui.component.SnackBarType

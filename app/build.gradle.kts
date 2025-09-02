@@ -3,6 +3,7 @@ plugins {
     id("com.android.vurgun.application.compose")
     id("com.android.vurgun.hilt")
     id("com.android.vurgun.network")
+    alias(libs.plugins.gms)
 }
 
 android {
@@ -16,4 +17,8 @@ dependencies {
     implementation(project(":feature:home"))
     implementation(project(":feature:slips"))
     implementation(project(":feature:current-slip"))
+    // Firebase
+    val firebaseBom = platform(libs.firebase.bom)
+    implementation(firebaseBom)
+    implementation(libs.firebase.analytics)
 }

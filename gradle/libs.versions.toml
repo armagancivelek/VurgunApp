@@ -1,5 +1,5 @@
 [versions]
-androidGradlePlugin = "8.6.0"
+androidGradlePlugin = "8.11.1"
 constraintlayoutCompose = "1.1.1"
 core = "3.5.3"
 datastorePreferences = "1.1.4"
@@ -57,6 +57,10 @@ coil = "3.1.0"
 chucker = "4.1.0"
 lumberjack-log = "6.0.7"
 zxingAndroidEmbedded = "4.3.0"
+firebaseCommonKtx = "22.0.0"
+firebaseBom = "33.6.0"
+gmsPlugin = "4.4.1"
+
 
 [libraries]
 #
@@ -91,6 +95,13 @@ androidx-navigation-testing = { group = "androidx.navigation", name = "navigatio
 core = { module = "com.google.zxing:core", version.ref = "core" }
 paging-runtime-ktx = { group = "androidx.paging", name = "paging-runtime-ktx", version.ref = "paging" }
 paging-compose = { group = "androidx.paging", name = "paging-compose", version.ref = "paging" }
+
+#
+# Firebase Dependencies
+#
+firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
+firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics-ktx" }
+
 
 #
 # Hilt Dependencies
@@ -194,10 +205,12 @@ volley = { group = "com.android.volley", name = "volley", version.ref = "volley"
 androidx-compose-material-iconsExtended = { group = "androidx.compose.material", name = "material-icons-extended" }
 okhttp3 = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 zxing-android-embedded = { module = "com.journeyapps:zxing-android-embedded", version.ref = "zxingAndroidEmbedded" }
+firebase-common-ktx = { group = "com.google.firebase", name = "firebase-common-ktx", version.ref = "firebaseCommonKtx" }
 
 
 
 [plugins]
+gms = { id = "com.google.gms.google-services", version.ref = "gmsPlugin" }
 android-application = { id = "com.android.application", version.ref = "androidGradlePlugin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }

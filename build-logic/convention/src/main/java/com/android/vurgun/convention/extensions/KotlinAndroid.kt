@@ -95,7 +95,7 @@ internal fun Project.configureKotlinAndroid(
             }
             create("dev") {
                 dimension = "version"
-                applicationIdSuffix = ".dev"
+//                applicationIdSuffix = ".dev"
             }
         }
 
